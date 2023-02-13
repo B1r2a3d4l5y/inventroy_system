@@ -4,32 +4,32 @@
     box-sizing: border-box;
 
 }
+body{
+    background-color: #44a;
+    display: inline-block;
+    text-align: center;
+    justify-content:  center;
+    align-items: center;
+
+}
+h1 {
+    display: inline-block;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
 
 
-.username {
+.user {
     display: inline-block;
     position: relative;
-    margin:50px;
+    margin: 90px;
 
 
 }
 .password {
     display: inline-block;
     position: relative;
-    margin: 120px;
-    right: 380px;
+    left: 100px;
 
 }
-.table {
-    display: inline-block;
-    position: relative;
-    border-collapse: collapse;
-    border-top: 10px;
-    border-left: 5px;
-    border-bottom: 10px;
-    max-height : 50px
-
-    
-}
-
-

@@ -14,23 +14,18 @@
 <body>
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div class="row">
-            <form class="form col-lg-6 col-md-6 col-sm-12 col-xs-12" action="includes/insert_user.php">
+            <form class="form col-lg-6 col-md-6 col-sm-12 col-xs-12" action="includes/log_user.php" method="post">
                 <div class="form_group col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <h1>Login User</h1>
+                    
                     <label for="username">
                         <input type="text" class="user" name="user" placeholder="Username">
                     </label>
                   
                     <label for="password">
                         <input type="password" class="password" name="password" placeholder="Password" >
-                       
 
-                    </label>
-                      <label for="remberMe">
-                          <input type="checkbox" id="rember" name="rember" > Rember Me
-
-                    </label>
-                    <a  class="login btn btn-success" name="login" href="dashboard.php">Login</a>
+                    <button class="login btn btn-success btn-mt-4" name="login" >Login </button>
                 </div>
 
                 </div>

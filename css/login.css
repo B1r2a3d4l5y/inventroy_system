@@ -17,6 +17,8 @@ h1 {
     text-align: center;
     justify-content: center;
     align-items: center;
+    margin: 45px;
+    font-size: 45px;
 }
 
 
@@ -27,9 +29,27 @@ h1 {
 
 
 }
+
 .password {
     display: inline-block;
     position: relative;
-    left: 100px;
+    left: 90px;
 
+}
+#rember {
+    display: inline-block;
+   position: relative;
+   text-align: center;
+   justify-content: center;
+   align-items: center;
+   white-space: nowrap;
+   margin-left: 15px;
+}
+
+.login {
+    display: inline-block;
+    position: relative;
+    right:  -100px;
+   
+  
 }

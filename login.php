@@ -20,11 +20,17 @@
                     <label for="username">
                         <input type="text" class="user" name="user" placeholder="Username">
                     </label>
+                  
                     <label for="password">
                         <input type="password" class="password" name="password" placeholder="Password" >
+                       
 
                     </label>
-                    <button type="submit" class="">
+                      <label for="remberMe">
+                          <input type="checkbox" id="rember" name="rember" > Rember Me
+
+                    </label>
+                    <a  class="login btn btn-success" name="login" href="dashboard.php">Login</a>
                 </div>
 
                 </div>

@@ -5,3 +5,4 @@ CREATE TABLE users (
     username VARCHAR(20)  NOT NULL,
     password VARCHAR(100) NOT NULL
 );
+INSERT INTO users(username, password) VALUES("admin" , "password");

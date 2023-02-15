@@ -18,6 +18,8 @@
                 <div class="form_group col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <h1>Login User</h1>
                     
+                   
+                    
                     <label for="username">
                         <input type="text" class="user" name="user" placeholder="Username">
                     </label>
@@ -25,7 +27,7 @@
                     <label for="password">
                         <input type="password" class="password" name="password" placeholder="Password" >
 
-                    <button class="login btn btn-success btn-mt-4" name="login" >Login </button>
+                    <button   class="login btn btn-success btn-mt-4" name="login"  >Login</button>
                 </div>
 
                 </div>
@@ -37,6 +39,7 @@
             </form>
         </div>
     </div>
+    <script src="js/validate.js"></script>
     
 </body>
 </html>

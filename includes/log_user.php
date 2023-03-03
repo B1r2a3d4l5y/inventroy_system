@@ -1,47 +1,53 @@
 <?php
 session_start();
-extract($_POST);
+session_regenerate_id();
+ob_start();
+include "database.php";
+if(isset($_POST{"login"})){
+    $usrname = trim($_POST["user"] ) ;
+        $password = trim($_POST["password"]);
 
-if(isset($_SESSION["user"])) {
-    $_SESSION["user"] === $user;
-    header("Location:../login.php");
-    exit;
-
-}
-
-if(isset($_POST["login"])) {
-    $user = $_POST["user"];
-    $password = $_POST["password"];
-
-    if(empty($username) || empty($password)) {
-        header("Location:../login.php?Empty=Please fill iin the fields");
-        exit;
-
-    } else {
-        if(empty($username)) {
-            header("Location:./ogin.php?username=Please fill in your username");
-            exit;
-
+        if(empty($usrname)|| empty($password)) {
+            die("Fields are empty. Please fill them in") ;
+            header("location:../login.php?../login.php?Fields=empty");
         } else {
-            if(empty($password)) {
-                header("Location:../login.php?Password= Please fill in your password.");
-                exit;
+            if(empty($username)) {
+                die("Please enter your username");
+                header("location:../login.php?Username = empty");
+
+            } elseif($empty($password)) {
+                die("Please enter your password");
+                header("location:../login.php?Pasword=empty");
 
             } else {
-                if($password !="password") {
-                    header("Location:../login.php?incoorectpassword= Your password is incorrect. Please check it");
-                    exit;
-
+                $stmt = $conn->prepare("SELECT * FROM users where username=$username  AND password=$password");
+                if($stmt === false ) {
+                    die("SQL error");
                 } else {
-                    if($username === "admin" && $password ==="123456") {
-                        $_SESSION["user"] === $user;
-                        header("Location:../dashboard.php");
-                        exit;
+                    $stmt->bind_param("ss", $username, $password);
+                    $stmt->execute();
+                    $stmt->bind_result("Username, password");
+                    $stmt->bind_result();
 
+                    if($stmt->num_rows === 1) {
+                        while($stmt->fetch_assoc()) {
+                            // register the sessions
+                            seession_register("admin");
+                            session_register("password");
+                            $_SESSION["user"] = $username;
+                            header("location:../dashboard.php");
+                            
+                        }
+                    }   else {
+                            echo"alert('invalid name and password')";
+                            header("location:../login.php");
+                            $stmt->close();
+                        }  
                     }
+                } 
+            } 
+        } else {
+                    $conn->close();
                 }
-            }
-        }
-    }
-
-}
+    
+?>

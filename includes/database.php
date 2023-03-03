@@ -11,3 +11,4 @@ if($conn->connect_error ) {
 } else {
     die("connection succesful");
 }
+?>

@@ -22,8 +22,8 @@ if(isset($_POST["login"])) {
              if($stm->num_rows === 1) {
                 while($stmt->fetch_assoc() ) {
                     session_register("user");
-                    session_registor("password");
-                    $_SESSION["user"] = $username;
+                    session_register("password")
+                  $_SESSION["user"] = $username;
                     header("Location:../dashboard.php?login=success");
                 } 
              } else {

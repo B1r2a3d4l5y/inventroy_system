@@ -17,7 +17,15 @@
                     <h1>Login User</h1>
                     
                    
-                    
+                   
+                  
+                  
+                   
+                   
+
+                 <span class="errorMsg text text-danger">
+                   
+                 </span>
                     <label for="username">
                         <input type="text" class="user" name="user" placeholder="Username">
                     </label>

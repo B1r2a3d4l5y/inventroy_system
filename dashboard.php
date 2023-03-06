@@ -30,6 +30,7 @@ if(isset(!session_is_registered("admin"))) {
                 <p><b>Welcome <?php echo admin ?></b></p>
                 <a class="btn btn-danger" role="button" href=" includes/ logout.php">Logout</a>
             </nav>
+            
 
             </div>
         </div>

@@ -1,14 +1,13 @@
 <?php
-$dbHost = "localhost";
+$serverHost = "localhost";
 $dbUsername = "root";
-$dbPassword = "";
+$dbPassword ="";
 $dbName = "login";
 
-$conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
-
-if($conn->connect_error ) {
-    die("Connection error".$conn->connect_error);
+$conn = new mysqli($serverHost, $dbUsername, $dbPassword, $dbName );
+if($conn->connect_error) {
+    echo "connection error". $conn->connect_error;
 } else {
-    die("connection succesful");
+    echo "connection successful";
 }
 ?>

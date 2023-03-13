@@ -1,40 +1,24 @@
 <?php
-session_start();
 require "database.php";
-if(isset($_POST["login"])) {
-    $username = trim($_POST["user"]);
-    $password = trim($_POST["password"]);
+error_reporting(-1);
+ini_set('display_errors', 'On');
 
-    if(empty($username )|| empty($password)) {
-        header("Location:../login.php?fields=empty");
-        exit();
+if(isset($_POST["login"])){
+    $username = trim($_POST["username"] );
+    $password = password_hash(trim($_POST["password"]);)
+
+    if(empty($username)|| empty($password)) {
+        header("Location:../login.php?Fields=empty");
     } else {
-          $stmt = $conn->prepare("SELECT * FROM users WHERE username=$username AND password=$password");
-          if($stmt === false) {
-            die("SQL error");
-          }
-          if($stmt === true) {
-             $stmt->bind_param("ss", $username, $password);
-             $stmt->execute();
-             $stmt->bind_result();
-             $stmt->fetch_result();
-             
-             if($stm->num_rows === 1) {
-                while($stmt->fetch_assoc() ) {
-                    session_register("user");
-                    session_register("password")
-                  $_SESSION["user"] = $username;
-                    header("Location:../dashboard.php?login=success");
-                } 
-             } else {
-                    echo "Invalid username and password";
-                    header("Location:../login.php");
-                    $stmt->close();
-                }
+        if(!password_verify('password', $password)) {
+            header("Location:../login.php?password=invalid");
+        } else {
+            $stmt = $conn->prepare("SELECT * FROM users WHERE username=? AND password=?");
+            
 
-          }
+        }
     }
-} else {
-    $conn->close();
+
 }
+
 ?>

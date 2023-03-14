@@ -1,6 +1,5 @@
 <?php
 session_start();
-require "database.php";
 if(isset($_SESSION['user'])) {
     header("dashboaed.php");
 
@@ -27,7 +26,7 @@ if(isset($_SESSION['user'])) {
     <title>Dashboard</title>
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <nav class="menu col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <a class="logo  nav navbar-brand">Inventroy system</a>

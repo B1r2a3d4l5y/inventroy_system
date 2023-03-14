@@ -35,15 +35,14 @@
     .password {
         display: inline-block;
         position: relative;
-        left: 90px;
-
+        left: 50px;
     }
 
     .login {
         display: inline-block;
         position: relative;
-        left: 55px;
-        margin: 30px;
+        left: 35px;
+        margin: 40px;
 
 
     }

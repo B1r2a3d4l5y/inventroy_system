@@ -1,0 +1,17 @@
+::before::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.logo {
+    display: inline-block;
+    position: relative;
+    color: white;
+    background-color: blue;
+
+}
+.welcome {
+    display: inline-block;
+    position: relative;
+    top: -100px;
+}

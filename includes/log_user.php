@@ -6,7 +6,7 @@ ini_set('display_errors', 'On');
 if(isset($_POST["login"])) {
     $username = trim($_POST["user"]);
     $password = $_POST["password"];
-    $pass_hash = password_hash("password" , PASSWORD_DEFAULT, $password);
+    $pass_hash = password_hash("password" , PASSWORD_DEFAULT);
 
     if(empty($username) || empty($password)) {
         header("Location:../login.php?Fields=empty");
@@ -24,7 +24,7 @@ if(isset($_POST["login"])) {
                 $_SESSION["logged"] = 1;
                 $_SESSION["user"] = $username;
                 $_SESSION["password"] = $password;
-                header("Location:dashboard.php");
+                header("Location:../dashboard.php");
                 exit;
                 $stmt->close();
 

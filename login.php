@@ -10,22 +10,13 @@
     <title>Login page</title>
 </head>
 <body>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class=" container  ">
         <div class="row">
             <form class="form col-lg-6 col-md-6 col-sm-12 col-xs-12" action="includes/log_user.php" method="POST">
                 <div class="form_group col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <h1>Login User</h1>
-                    
                    
-                   
-                  
-                  
-                   
-                   
-
-                 <span class="errorMsg text text-danger">
-                   
-                 </span>
+                 
                     <label for="username">
                         <input type="text" class="user" name="user" placeholder="Username">
                     </label>

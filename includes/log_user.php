@@ -1,7 +1,7 @@
 <?php
 error_reporting(-1);
 ini_set('display_errors', 'On');
- require "database.php";
+require 'database.php';
 
 if(isset($_POST["login"])) {
     $username = trim($_POST["user"]);
@@ -24,7 +24,7 @@ if(isset($_POST["login"])) {
                 $_SESSION["logged"] = 1;
                 $_SESSION["user"] = $username;
                 $_SESSION["password"] = $password;
-                header("Location:../dashboard.php");
+                header("Location:dashboard.php");
                 exit;
                 $stmt->close();
 

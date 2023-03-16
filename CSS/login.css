@@ -1,0 +1,50 @@
+*{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+
+    }
+
+    body {
+        background-color: #44a;
+        display: inline-block;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    h1 {
+        display: inline-block;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        margin: 45px;
+        font-size: 45px;
+    }
+
+
+    .user {
+        display: inline-block;
+        position: relative;
+        margin: 90px;
+
+
+    }
+
+    .password {
+        display: inline-block;
+        position: relative;
+        left: 50px;
+    }
+
+    .login {
+        display: inline-block;
+        position: relative;
+        left: 35px;
+        margin: 40px;
+
+
+    }
+
+   

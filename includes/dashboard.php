@@ -30,39 +30,97 @@ if(isset($_SESSION['user'])) {
     padding: 0;
     box-sizing: border-box;
 }
-.logo {
-    display: inline-block;
-    color: red;
-    font-size: 50px;
-    font-weight: bold;
-    margin-left : -105px;
-    
-}
-.welcome {
-    display:inline-block;
-    font-size : 30px;
-    margin-top: 17px;
-    margin-left :50px;
-}
-.logout {
-    display: inline-block;
-     margin: 20px;
-     margin-left : 200px;
+.logo-box {
+    background-color : black;
+    width: 100%;
+    border: none;
+    border-radius : 5px;
+
+
+
 
 }
+.logo {
+    display:inline-block ;
+    color: red;
+    font-size : 70px;
+    font-weight : bold;
+
+}
+.logo:hover {
+    color: red
+
+}
+.menu {
+    background-color : blue;
+    width : 100%;
+    
+}
+
+
+
+.admin {
+
+}
+
     </style>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <ul class="menu nav">
-                <li class="logo"><a class=" logo  nav  navbar-brand"><a>Inventroy system</li>
-                <li class="welcome"><p class="welcome ">Welcome: <?php echo $_SESSION['user']?></p></li>
-                <li class="logout"><a class="logout btn btn-danger btn-md" href="includes/logout.php" role="button">Logout</a><li>
-            </ul>
+            <div class="logo-box col-lg-6 col-md-6 colsm-12">
+                <a class="logo nav navbar-brand">Inventroy System </a>
+            </div>
+            <nav class="menu nav navbar">
+                <a class="dashboard" href="includes/dashbord.php">Dashboard</a>
+                <a class="products" href="products.php" >Products</a>
+                <a class="users" href="users.php">Users</a>
+                 <a class="logout btn btn-danger btn-md " href="includes/logout.php">Logout </a>
+                <p class="admin"><?php echo $_SESSION['user']?></p>
+            </nav>
             
 
             </div>
+           <form class="form col-lg-6 col-md-6 col-sm-12" action="" method="GET">
+             <table class="table">
+                <thead>
+                    <tr>
+                        <th>Highest selling products</th>
+
+
+                        <tr>
+                            <td >Title</td>
+                            <td >Total Sold</td>
+                            <td >Total Quanity</td>
+
+                </thead>
+                <tbody>
+                    <?php
+                    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+                    $conn = new mysqli("localhost, root, products ");
+                    $conn->query("DROP TABLE IF EXISTS highest_selling");
+                    $conn->query("CREATE TABLE highest_selling(
+                        title VARCHAR(30) NOT NULL,
+                        total_sold INTEGER NOT NULL,
+                        total_quanity INTEGER NOT NULL
+                        
+                    );");
+                    $conn->query("INSERT INTO highest_selling(title, total_sold, total_quanity)VALUES(small buble cusing  wrap, 2, 25   );");
+                    $conn->query("INSERT INTO highest_selling(title, total_sold, total_quanity) VALUES(USB cable, 2, 12)");
+                    $conn->query("INSERT INTO highest_selling(title, total_sold, total_quanity)VALUES(title , total_sold, total_quanity) VALUES(Lord pf the rings board game , 2 , 4) ");
+                    $stmt = $conn->prepare ("SELECT * FROM highest_selling");
+                    $stmt->execute();
+                    $result = $stmt->get_resut();
+                    $row = $result->fetch_array();
+                    while($row) {
+
+                    }
+
+
+                    ?>
+                </tbody>
+            </table>
+           </form>
         </div>
     </div>
     

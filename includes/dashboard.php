@@ -109,7 +109,8 @@ if(isset($_SESSION['user'])) {
                         total_quanity INTEGER NOT NULL
                         
                     );");
-                    $conn->query()
+                    $conn->query("INSERT INTO highest_selling(title, total_sold, total_quanity)VALUES(small buble cusing  wrap, 2, 25   );");
+                    $conn->query("INSERT INTO highest_selling(title, total_sold, total_quanity) VALUES")
 
 
                     ?>

@@ -97,7 +97,11 @@ if(isset($_SESSION['user'])) {
                 <tbody>
                     <?php
                     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-                    $conn = new mysqli("localhost, root, products ");
+                    $serverHost = "localhost";
+                    $Username = "root";
+                    $dbPassword = "";
+                    $dbName = "products";
+                    $conn =  new mysqli($serverHost, $Username, $dbPassword, $dbName);
                     $conn->query("DROP TABLE IF EXISTS highest_selling");
                     $conn->query("CREATE TABLE highest_selling(
                         title VARCHAR(30) NOT NULL,
@@ -105,14 +109,20 @@ if(isset($_SESSION['user'])) {
                         total_quanity INTEGER NOT NULL
                         
                     );");
-                    $conn->query("INSERT INTO highest_selling(title, total_sold, total_quanity)VALUES(small buble cusing  wrap, 2, 25   );");
-                    $conn->query("INSERT INTO highest_selling(title, total_sold, total_quanity) VALUES(USB cable, 2, 12)");
-                    $conn->query("INSERT INTO highest_selling(title, total_sold, total_quanity)VALUES(title , total_sold, total_quanity) VALUES(Lord pf the rings board game , 2 , 4) ");
+                    $conn->query("INSERT INTO highest_selling(title, total_sold, total_quanity) VALUES('buble wrap', 2 , 4 )");
+                    $conn->query("INSERT INTO highest_selling(title, total_sold, total_quanity) VALUES('USB cable' , 2 , 12)");
+                    $conn->query("INSERT INTO highest_selling(title, total_sold, total_quanity) VALUES('Lord of the rings board game' , 2 , 4) ");
                     $stmt = $conn->prepare ("SELECT * FROM highest_selling");
                     $stmt->execute();
-                    $result = $stmt->get_resut();
+                    $result = $stmt->get_result();
                     $row = $result->fetch_array();
                     while($row) {
+                        echo "<tr>";
+                        echo "<td>. $row[title] . </td>";
+                        echo "<td>.$row[total_sold] . </td>";
+                        echo "<td>. $row[total_quanity]. </td>";
+                        echo "</tr>";
+                        
 
                     }
 

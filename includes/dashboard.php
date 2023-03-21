@@ -80,9 +80,18 @@ if(isset($_SESSION['user'])) {
     margin-right : 900px;
 
  }
- .hr {
-    display: inline-block;
-    margin-top : -500px;
+ 
+ 
+ .sales {
+    display: inline-block; 
+    margin-left : 500px;
+    margin-top : -215px;
+    margin-right :60px;
+ }
+ .sales-header {
+    display:inline-block;
+    margin-top : 100px;
+    font-size : 35px;
  }
  
  
@@ -170,6 +179,19 @@ if(isset($_SESSION['user'])) {
                   
                     ?>
                 </tbody>
+            </table>
+
+            <table class="sales table table-light">
+                <thead>
+                    <caption class="sales-header">Latest Sales</capation>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Date  of purchase<th>
+                            <th>Total Sales</th>
+                    </tr>
+
+                </thead>
+                <tbody></tbody>
             </table>
         </div>
     </div>

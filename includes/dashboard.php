@@ -58,9 +58,11 @@ if(isset($_SESSION['user'])) {
 
 
 
- .admin {
-    font-size: 35px;
-    font-weight:bold;
+ 
+ 
+ .logout{
+    display:inline-block;
+    margin-bottom : 11px;
  }
 
     </style>
@@ -73,14 +75,13 @@ if(isset($_SESSION['user'])) {
         <div class="row">
             <div class="logo-box col-lg-6 col-md-6 colsm-12">
                 <a class="logo nav navbar-brand">Inventroy System </a>
+                
             </div>
             <nav class="menu nav navbar">
                 <a class="dashboard" href="includes/dashbord.php">Dashboard</a>
                 <a class="products" href="products.php" >Products</a>
                 <a class="users" href="users.php">Users</a>
-                      <p class="admin"><?php echo $_SESSION['user']?></p>
                  <a class="logout btn btn-danger btn-md " href="includes/logout.php">Logout </a>
-          
             </nav>
             
 
@@ -89,7 +90,6 @@ if(isset($_SESSION['user'])) {
              <table class="table highest_selling">
                 <thead>
                     <tr>
-                        <th>Highest selling products</th>
 
 
                             <td >Title</td>
@@ -107,8 +107,10 @@ if(isset($_SESSION['user'])) {
                     $dbPassword = "";
                     $dbName = "products";
                     $conn =  new mysqli($serverHost, $Username, $dbPassword, $dbName);
-                    $conn->query("DROP TABLE IF EXISTS  highest_selling;");
-                    $conn->query("CREATE TABLE highest_selling(
+
+                    $conn->query("DROP TABLE  IF EXISTS highest_selling; ");
+
+                    $conn->query("CREATE TABLE IF NOT EXISTS highest_selling(
                         title VARCHAR(30) NOT NULL,
                         total_sold INTEGER NOT NULL,
                         total_quanity INTEGER NOT NULL
@@ -118,19 +120,19 @@ if(isset($_SESSION['user'])) {
                   $conn->query("INSERT INTO highest_selling(title, total_sold, total_quanity) VALUES('USB cable', 3, 2 )");
                   $conn->query("INSERT INTO highest_selling(title, total_sold, total_quanity) VALUES('Lord Of the Rings board game', 3, 1) ");
 
-                    $stmt = $conn->prepare ("SELECT * FROM highest_selling LIMIT 5");
+                    $stmt = $conn->prepare ("SELECT  * FROM highest_selling");
                     $stmt->execute();
                     $result = $stmt->get_result();
-                    $row = $result->fetch_array();
-                    while($row){
+                    
+                    while($row = $result_>fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td>. $row[title] . </td> ";
-                        echo "<td>.$row[total_sold] . </td> ";
-                        echo "<td>.  $row[total_quanity]. </td> ";
+                         echo "<td> .$row[title]</td>;";
+                        echo "<td>.$row[total_sold] </td>";
+                        echo "<td>.$row[total_quanity] . <td>";
                         echo "</tr>";
+
                     }
-
-
+                  
                     ?>
                 </tbody>
             </table>

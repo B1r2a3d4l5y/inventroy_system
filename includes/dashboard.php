@@ -64,6 +64,32 @@ if(isset($_SESSION['user'])) {
     display:inline-block;
     margin-bottom : 11px;
  }
+ .highest_selling {
+
+    display:inline-block;
+    margin-top: 50px;
+    right :20px;
+    width: 100%;
+    height: 90px;
+    text-align : center;
+    
+ }
+ .table-header {
+    display: inline-block;
+    font-size : 35px;
+    margin-right : 900px;
+
+ }
+ .hr {
+    display: inline-block;
+    margin-top : -500px;
+ }
+ 
+ 
+ 
+ 
+
+ 
 
     </style>
 
@@ -86,15 +112,24 @@ if(isset($_SESSION['user'])) {
             
 
             </div>
+             
+                   
+
           
-             <table class="table highest_selling">
+             <table class=" highest_selling table table-light ">
+
+                   <caption class="table-header">Highest selling products<caption>
+                
                 <thead>
+                 
+                   
                     <tr>
+                        
 
-
-                            <td >Title</td>
-                            <td >Total Sold</td>
-                            <td >Total Quanity</td>   
+                        
+                            <th >Title</th>
+                            <th >Total Sold</th>
+                            <th >Total Quanity</th>   
 
                     </tr>
                 </thead>
@@ -124,11 +159,11 @@ if(isset($_SESSION['user'])) {
                     $stmt->execute();
                     $result = $stmt->get_result();
                     
-                    while($row = $result_>fetch_assoc()) {
+                    while($row = $result->fetch_array()) {
                         echo "<tr>";
-                         echo "<td> .$row[title]</td>;";
-                        echo "<td>.$row[total_sold] </td>";
-                        echo "<td>.$row[total_quanity] . <td>";
+                         echo "<td> $row[title] </td>";
+                        echo "<td> $row[total_sold] </td>";
+                        echo "<td> $row[total_quanity]  <td>";
                         echo "</tr>";
 
                     }

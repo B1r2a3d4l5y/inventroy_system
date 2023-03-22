@@ -186,12 +186,32 @@ if(isset($_SESSION['user'])) {
                     <caption class="sales-header">Latest Sales</capation>
                     <tr>
                         <th>Product Name</th>
-                        <th>Date  of purchase<th>
+                        <th>Date <th>
                             <th>Total Sales</th>
                     </tr>
 
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    <?php
+                     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+                    ini_set('memory_limit', -1);
+                    $serverHost = "localhost";
+                    $Username = "root";
+                    $dbPassword = "";
+                    $dbName = "products";
+                    $conn =  new mysqli($serverHost, $Username, $dbPassword, $dbName);
+                     $conn->query("DROP TABLE IF EXISTS latest_sales");
+                     $conn->query("CREATE TABLE IF NOT EXISTS latest_sales(
+                        product_name VARCHAR(30),
+                        date DATE();
+                        total_sales FLOAT(25)
+
+                     );");
+                     $conn->query("INSERT INTO ")
+
+
+                    ?>
+                </tbody>
             </table>
         </div>
     </div>

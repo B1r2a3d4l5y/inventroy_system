@@ -187,7 +187,7 @@ if(isset($_SESSION['user'])) {
                     <tr>
                         <th>Product Name</th>
                         <th>Date <th>
-                            <th>Total Sales</th>
+                            <th>Total Sales $ </th>
                     </tr>
 
                 </thead>
@@ -202,12 +202,25 @@ if(isset($_SESSION['user'])) {
                     $conn =  new mysqli($serverHost, $Username, $dbPassword, $dbName);
                      $conn->query("DROP TABLE IF EXISTS latest_sales");
                      $conn->query("CREATE TABLE IF NOT EXISTS latest_sales(
-                        product_name VARCHAR(30),
-                        date DATE();
-                        total_sales FLOAT(25)
+                        product_name VARCHAR(30) NOT NULL,
+                        date DATE NOT NULL,
+                        total_sales FLOAT (25) NOT NULL
 
-                     );");
-                     $conn->query("INSERT INTO ")
+                     )");
+                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('USB 3.0 extension cable', '5.March.2023' , 270.07)");
+                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('Desk Orginasier', '10.June.2023', 150.00)");
+                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('1TB hard drive' , '11.June.2023', 160.00)");
+                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('Macos laptop', '20.June.2023',  200.05)");
+                     $stmt = $conn->prepare("SELECT * FROM latest_sales");
+                     $stmt->execute();
+                     $result = $stmt->get_result();
+                     While($row = $result->fetch_array() ) {
+                        echo "<tr>";
+                        echo "<td> $row[product_name] </td>";
+                        echo "<td> $row[date] </td>";
+                        echo "<td> $row[total_sales]";
+                        echo "</tr>";
+                     }
 
 
                     ?>

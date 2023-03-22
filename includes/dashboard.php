@@ -62,7 +62,7 @@ if(isset($_SESSION['user'])) {
  
  .logout{
     display:inline-block;
-    margin-bottom : 11px;
+    margin-bottom : 13px;
  }
  .highest_selling {
 
@@ -70,8 +70,8 @@ if(isset($_SESSION['user'])) {
     margin-top: 50px;
     right :20px;
     width: 100%;
-    height: 90px;
     text-align : center;
+
     
  }
  .table-header {
@@ -79,14 +79,18 @@ if(isset($_SESSION['user'])) {
     font-size : 35px;
     margin-right : 900px;
 
+
  }
  
  
  .sales {
     display: inline-block; 
+     
     margin-left : 500px;
-    margin-top : -215px;
-    margin-right :60px;
+    margin-top : -400px;
+    margin-right : 60px;
+    width : 100%;
+    text-indent : 100px;
  }
  .sales-header {
     display:inline-block;
@@ -102,7 +106,7 @@ if(isset($_SESSION['user'])) {
 
     </style>
 
-    <title>Dashboard</title>
+    <title>Dashboard</title>  
       
 </head>
 <body>
@@ -171,8 +175,8 @@ if(isset($_SESSION['user'])) {
                     while($row = $result->fetch_array()) {
                         echo "<tr>";
                          echo "<td> $row[title] </td>";
-                        echo "<td> $row[total_sold] </td>";
-                        echo "<td> $row[total_quanity]  <td>";
+                        echo "<td>  $row[total_sold] </td>";
+                        echo "<td>  $row[total_quanity]  <td>";
                         echo "</tr>";
 
                     }
@@ -181,13 +185,13 @@ if(isset($_SESSION['user'])) {
                 </tbody>
             </table>
 
-            <table class="sales table table-light">
+            <table class="sales table table-light ">
                 <thead>
                     <caption class="sales-header">Latest Sales</capation>
                     <tr>
                         <th>Product Name</th>
                         <th>Date <th>
-                            <th>Total Sales $ </th>
+                            <th>Total Sales $</th>
                     </tr>
 
                 </thead>
@@ -207,18 +211,18 @@ if(isset($_SESSION['user'])) {
                         total_sales FLOAT (25) NOT NULL
 
                      )");
-                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('USB 3.0 extension cable', '5.March.2023' , 270.07)");
-                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('Desk Orginasier', '10.June.2023', 150.00)");
-                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('1TB hard drive' , '11.June.2023', 160.00)");
-                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('Macos laptop', '20.June.2023',  200.05)");
+                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('USB 3.0 extension cable', '2023-03-05' , 270.07)");
+                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('Desk Orginasier', '2023-06-10', 150.10)");
+                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('1TB hard drive' , '2023-06-11', 160.20)");
+                    $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('MacOS laptop', '2023-06-20', 205.70)");
                      $stmt = $conn->prepare("SELECT * FROM latest_sales");
                      $stmt->execute();
                      $result = $stmt->get_result();
                      While($row = $result->fetch_array() ) {
                         echo "<tr>";
-                        echo "<td> $row[product_name] </td>";
-                        echo "<td> $row[date] </td>";
-                        echo "<td> $row[total_sales]";
+                        echo "<td>  $row[product_name] </td>";
+                        echo "<td>  $row[date] </td>";
+                        echo "<td>   $row[total_sales] </td>";
                         echo "</tr>";
                      }
 

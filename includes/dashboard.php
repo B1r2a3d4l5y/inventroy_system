@@ -177,7 +177,7 @@ if(isset($_SESSION['user'])) {
                     $stmt->execute();
                     $result = $stmt->get_result();
                     
-                    while($row = ) {
+                    foreach($result as $row ) {
                         echo "<tr>";
                         echo "<td> $row[title] </td>";
                         echo "<td> $row[total_sold] </td>";

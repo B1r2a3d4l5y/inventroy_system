@@ -95,7 +95,7 @@ if(isset($_SESSION['user'])) {
  }
  .sales-header {
     display:inline-block;
-    margin-top : 100px;
+    margin-top : 150px;
     margin-right : 1200px;
     font-size : 35px;
     white-space : nowrap;
@@ -124,7 +124,7 @@ if(isset($_SESSION['user'])) {
                 <a class="dashboard" href="includes/dashbord.php">Dashboard</a>
                 <a class="products" href="products.php" >Products</a>
                 <a class="users" href="users.php">Users</a>
-                 <a class="logout btn btn-danger btn-md " href="includes/logout.php">Logout </a>
+                 <a class="logout btn btn-danger btn-md " href="logout.php">Logout </a>
             </nav>
             
 
@@ -161,7 +161,7 @@ if(isset($_SESSION['user'])) {
                     $conn =  new mysqli($serverHost, $Username, $dbPassword, $dbName);
 
                     $conn->query("DROP TABLE  IF EXISTS highest_selling; ");
-
+ 
                     $conn->query("CREATE TABLE IF NOT EXISTS highest_selling(
                         title VARCHAR(30) NOT NULL,
                         total_sold INTEGER NOT NULL,
@@ -172,16 +172,16 @@ if(isset($_SESSION['user'])) {
                   $conn->query("INSERT INTO highest_selling(title, total_sold, total_quanity) VALUES('USB cable', 3, 2 )");
                   $conn->query("INSERT INTO highest_selling(title, total_sold, total_quanity) VALUES('Lord Of the Rings board game', 3, 1) ");
 
-                    $stmt = $conn->prepare ("SELECT  * FROM highest_selling");
+                    $stmt = $conn->prepare ("SELECT  *  FROM  highest_selling");
                     
                     $stmt->execute();
                     $result = $stmt->get_result();
                     
-                    foreach($result as $row) {
+                    while($row = ) {
                         echo "<tr>";
                         echo "<td> $row[title] </td>";
                         echo "<td> $row[total_sold] </td>";
-                        echo "<td> $row[total_quanity] </td>";
+                        echo "<td> $row[total_quanity] </td>"; 
                         echo "</tr>";
                     }
                   
@@ -190,6 +190,7 @@ if(isset($_SESSION['user'])) {
             </table>
 
             <table class="sales  table table-bordered  table-light ">
+                <caption>Latest Sales</caption>
                 <thead>
                     <tr>
                         <th>Product Name </th>
@@ -200,6 +201,8 @@ if(isset($_SESSION['user'])) {
                 <tbody>
                     <?php
                      mysqli_report( MYSQLI_REPORT_STRICT);
+                      ini_set('memory_limit', -1);
+                     
                      
                     
                     $serverHost = "localhost";
@@ -217,16 +220,17 @@ if(isset($_SESSION['user'])) {
                     $conn->query("INSERT INTO latest_sales(product_name , date , total_sales)VALUES('Desk Organiser', '2023-06-10', 150.10)");
                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales)VALUES('1TB hardrive', '2023-06-11', 160.20)");
                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('MACOS laptop', '2023-06-20', 205.7)");
-                    $stmt->prepare("SELECT * FROM  latest_sales");
+                    $stmt->prepare("SELECT * FROM  latest_sales  ");
                     $stmt->execute();
                     $result = $stmt->get_result();
+
                     
-                    foreach($result  as $row) {
+                    foreach($result as $row) {
                         echo "<tr>";
-                        echo "<td> $ow[product_name] </td>";
-                        echo "<td> $row[date] </td>";
-                        echo "<td> $row[total_sales] </td>";
-                        echo "</tr>";
+                      echo "<td> $row[title] </td>";
+                      echo "<td> $row[date] </td>";
+                      echo "<td> $row[total_sales] </td>";
+                      echo "</tr>";
                     }
 
 

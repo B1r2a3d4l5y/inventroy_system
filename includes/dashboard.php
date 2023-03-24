@@ -90,12 +90,16 @@ if(isset($_SESSION['user'])) {
     margin-top : -400px;
     margin-right : 60px;
     width : 100%;
-    text-indent : 100px;
+    text-align : center;
+    white-space: pre-wrap;
  }
  .sales-header {
     display:inline-block;
     margin-top : 100px;
+    margin-right : 1200px;
     font-size : 35px;
+    white-space : nowrap;
+    text-indent : 30px;
  }
  
  
@@ -129,7 +133,7 @@ if(isset($_SESSION['user'])) {
                    
 
           
-             <table class=" highest_selling table table-light ">
+             <table class=" highest_selling table table-bordered  table-light ">
 
                    <caption class="table-header">Highest selling products<caption>
                 
@@ -148,7 +152,7 @@ if(isset($_SESSION['user'])) {
                 </thead>
                 <tbody>
                     <?php
-                    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+                    mysqli_report( MYSQLI_REPORT_STRICT);
                     ini_set('memory_limit', -1);
                     $serverHost = "localhost";
                     $Username = "root";
@@ -169,66 +173,70 @@ if(isset($_SESSION['user'])) {
                   $conn->query("INSERT INTO highest_selling(title, total_sold, total_quanity) VALUES('Lord Of the Rings board game', 3, 1) ");
 
                     $stmt = $conn->prepare ("SELECT  * FROM highest_selling");
+                    
                     $stmt->execute();
                     $result = $stmt->get_result();
                     
-                    while($row = $result->fetch_array()) {
+                    foreach($result as $row) {
                         echo "<tr>";
-                         echo "<td> $row[title] </td>";
-                        echo "<td>  $row[total_sold] </td>";
-                        echo "<td>  $row[total_quanity]  <td>";
+                        echo "<td> $row[title] </td>";
+                        echo "<td> $row[total_sold] </td>";
+                        echo "<td> $row[total_quanity] </td>";
                         echo "</tr>";
-
                     }
                   
                     ?>
                 </tbody>
             </table>
 
-            <table class="sales table table-light ">
+            <table class="sales  table table-bordered  table-light ">
                 <thead>
-                    <caption class="sales-header">Latest Sales</capation>
                     <tr>
-                        <th>Product Name</th>
-                        <th>Date <th>
-                            <th>Total Sales $</th>
+                        <th>Product Name </th>
+                        <th>Date</th>
+                        <th>Total Sales</th>
                     </tr>
-
                 </thead>
                 <tbody>
                     <?php
-                     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-                    ini_set('memory_limit', -1);
+                     mysqli_report( MYSQLI_REPORT_STRICT);
+                     
+                    
                     $serverHost = "localhost";
                     $Username = "root";
                     $dbPassword = "";
                     $dbName = "products";
                     $conn =  new mysqli($serverHost, $Username, $dbPassword, $dbName);
-                     $conn->query("DROP TABLE IF EXISTS latest_sales");
-                     $conn->query("CREATE TABLE IF NOT EXISTS latest_sales(
+                    $conn->query("DROP TABLE IF EXISTS  latest_sales");
+                    $conn->query("CREATE TABLE IF NOT EXISTS latest_sales(
                         product_name VARCHAR(30) NOT NULL,
                         date DATE NOT NULL,
-                        total_sales FLOAT (25) NOT NULL
-
-                     )");
-                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('USB 3.0 extension cable', '2023-03-05' , 270.07)");
-                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('Desk Orginasier', '2023-06-10', 150.10)");
-                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('1TB hard drive' , '2023-06-11', 160.20)");
-                    $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('MacOS laptop', '2023-06-20', 205.70)");
-                     $stmt = $conn->prepare("SELECT * FROM latest_sales");
-                     $stmt->execute();
-                     $result = $stmt->get_result();
-                     While($row = $result->fetch_array() ) {
+                        total_sales FLOAT(25) NOT NULL
+                    )");
+                    $conn->query("INSERT INTO  latest_sales(product_name, date , total_sales) VALUES('USB extension 3.0 cable', '2023-03-05', 270.07)");
+                    $conn->query("INSERT INTO latest_sales(product_name , date , total_sales)VALUES('Desk Organiser', '2023-06-10', 150.10)");
+                    $conn->query("INSERT INTO latest_sales(product_name, date, total_sales)VALUES('1TB hardrive', '2023-06-11', 160.20)");
+                    $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('MACOS laptop', '2023-06-20', 205.7)");
+                    $stmt->prepare("SELECT * FROM  latest_sales");
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    
+                    foreach($result  as $row) {
                         echo "<tr>";
-                        echo "<td>  $row[product_name] </td>";
-                        echo "<td>  $row[date] </td>";
-                        echo "<td>   $row[total_sales] </td>";
+                        echo "<td> $ow[product_name] </td>";
+                        echo "<td> $row[date] </td>";
+                        echo "<td> $row[total_sales] </td>";
                         echo "</tr>";
-                     }
+                    }
 
 
                     ?>
                 </tbody>
+                  
+
+
+            
+                
             </table>
         </div>
     </div>

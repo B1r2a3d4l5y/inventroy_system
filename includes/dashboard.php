@@ -85,20 +85,19 @@ if(isset($_SESSION['user'])) {
  
  .sales {
     display: inline-block; 
-     
     margin-left : 500px;
-    margin-top : -400px;
+    margin-top : -253px;
     margin-right : 60px;
     width : 100%;
     text-align : center;
-    white-space: pre-wrap;
  }
  .sales-header {
     display:inline-block;
-    margin-top : 150px;
+    margin-top : -200px;
     margin-right : 1200px;
     font-size : 35px;
     white-space : nowrap;
+    text-align : center ;
     text-indent : 30px;
  }
  
@@ -177,7 +176,7 @@ if(isset($_SESSION['user'])) {
                     $stmt->execute();
                     $result = $stmt->get_result();
                     
-                    foreach($result as $row ) {
+                    foreach($result as  $row  ) {
                         echo "<tr>";
                         echo "<td> $row[title] </td>";
                         echo "<td> $row[total_sold] </td>";
@@ -189,8 +188,8 @@ if(isset($_SESSION['user'])) {
                 </tbody>
             </table>
 
-            <table class="sales  table table-bordered  table-light ">
-                <caption>Latest Sales</caption>
+            <table class="sales  table  table-bordered  table-light ">
+                <caption class="sales-header">Latest Sales</caption>
                 <thead>
                     <tr>
                         <th>Product Name </th>
@@ -220,17 +219,17 @@ if(isset($_SESSION['user'])) {
                     $conn->query("INSERT INTO latest_sales(product_name , date , total_sales)VALUES('Desk Organiser', '2023-06-10', 150.10)");
                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales)VALUES('1TB hardrive', '2023-06-11', 160.20)");
                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('MACOS laptop', '2023-06-20', 205.7)");
-                    $stmt->prepare("SELECT * FROM  latest_sales  ");
+                    $stmt = $conn->prepare("SELECT * FROM  latest_sales  ");
                     $stmt->execute();
-                    $result = $stmt->get_result();
+                    $result = $stmt-> get_result();
 
-                    
-                    foreach($result as $row) {
-                        echo "<tr>";
-                      echo "<td> $row[title] </td>";
-                      echo "<td> $row[date] </td>";
-                      echo "<td> $row[total_sales] </td>";
-                      echo "</tr>";
+                   foreach($result  as $row) {
+                    echo "<tr>";
+                    echo "<td> $row[product_name] </td>";
+                    echo "<td> $row[date] </td>";
+                    echo "<td> $row[total_sales] </td>";
+
+                        
                     }
 
 
@@ -241,6 +240,13 @@ if(isset($_SESSION['user'])) {
 
             
                 
+            </table>
+            <table>
+                <thead>
+                    <tr>
+                        
+                    </tr>
+                </thead>
             </table>
         </div>
     </div>

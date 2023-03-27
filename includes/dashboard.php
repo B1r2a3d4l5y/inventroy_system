@@ -221,7 +221,7 @@ if(isset($_SESSION['user'])) {
                     $conn->query("INSERT INTO latest_sales(product_name, date, total_sales) VALUES('MACOS laptop', '2023-06-20', 205.7)");
                     $stmt = $conn->prepare("SELECT * FROM  latest_sales  ");
                     $stmt->execute();
-                    $result = $stmt-> get_result();
+                    $result = $stmt->get_result();
 
                    foreach($result  as $row) {
                     echo "<tr>";
@@ -237,16 +237,50 @@ if(isset($_SESSION['user'])) {
                 </tbody>
                   
 
-
+ 
             
                 
             </table>
-            <table>
+            <table class="daily_sales table table-bordered table-light">
+                <caption>Daily Sales</caption>
                 <thead>
                     <tr>
-                        
+                        <th>Id</th>
+                        <th>Product Name</th>
+                        <th>Quanity Sold</th>
+                        <th>Date</th>
+                        <th>Total</th>
+
                     </tr>
                 </thead>
+                <tbody>
+                    <?php
+                      $serverHost = "localhost";
+                    $Username = "root";
+                    $dbPassword = "";
+                    $dbName = "products";
+                    $conn =  new mysqli($serverHost, $Username, $dbPassword, $dbName);
+                    $conn->query("DROP TABLE IF EXISTS daily_sales");
+                    $conn->query("CREATE TABLE IF NOT EXISTS daily_sales(
+                        id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                        product_name VARCHAR(30),
+                        quanity_sold INTEGER NOT NULL,
+                        date DATE NOT NULL,
+                        total FLOAT(30)
+                    )");
+                    $conn->query("INSERT INTO daily_sales(product_name, quanity_sold , date, total) VALUES('Demo product', 3 , '2023-05-15', 1000.90 )");
+                    $conn->query("INSERT INTO daily_sales(product_name, quanity_sold, date, total ) VALUES('wheat ',  4 , '2023-05-16' , 16.01)");
+                    $conn->query("INSERT INTO  daily_sales(product_name, quanity_sold, date , total) VALUES('weet-bix cearal' , 5, '2023-05-16', 200.05) ");
+                    $conn->query("INSERT INTO daily_sales(product_name, quanity_sold, date, total) VALUES('portable bluetooth speaker', 6, '2023-05-17', 300.05)");
+                    $conn->query("INSERT INTO daily_sales(product_name, quanity_sold, date, total) VALUES('Future Life ceareal x3', 4, '2023-05-18', 108.50)");
+                    $conn-query("INSERT INTO  daily_sales(product_name, quanity_sold, date, total) VALUES('portable XWS saw', 3, '2023-05-19', 150.00)");
+                    $conn->query("INSERT INTO  daily_sales(product_name, quanity_sold, date, total)VALUES('Hasbro Toystory board game toys', 2 , '2023-05-19 ', 50.00)");
+                    
+
+
+                    ?>
+                </tbody>
+
             </table>
         </div>
     </div>

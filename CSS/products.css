@@ -4,3 +4,22 @@
     box-sizing: border-box;
 
 }
+.product-name {
+    display: inline-block;
+    position: relative;
+    margin: 50px;
+}
+.quanity {
+    display: inline-block;
+    margin-bottom  : 300px;
+    margin-right: 60px;
+    width: 200px;
+
+}
+.price {
+    display: inline-block;
+    top: -330px;
+    margin-right: 50px;
+    width: 250px;
+
+}

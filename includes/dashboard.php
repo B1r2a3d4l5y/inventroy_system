@@ -78,6 +78,7 @@ if(isset($_SESSION['user'])) {
     display: inline-block;
     font-size : 35px;
     margin-right : 900px;
+    white-space : nowrap;
 
 
  }
@@ -90,6 +91,7 @@ if(isset($_SESSION['user'])) {
     margin-right : 60px;
     width : 100%;
     text-align : center;
+    white-space : nowrap;
  }
  .sales-header {
     display:inline-block;
@@ -99,6 +101,18 @@ if(isset($_SESSION['user'])) {
     white-space : nowrap;
     text-align : center ;
     text-indent : 30px;
+ }
+ .daily_sales {
+    display : inline-block ;
+    margin-top : 100px;
+ }
+ .daily {
+    display: inline-block;
+    margin-top : -200px;
+    margin-left : 45px;
+    text-align : center;
+    text-indent : 20px;
+    font-size : 35px;
  }
  
  
@@ -120,7 +134,7 @@ if(isset($_SESSION['user'])) {
                 
             </div>
             <nav class="menu nav navbar">
-                <a class="dashboard" href="includes/dashbord.php">Dashboard</a>
+                <a class="dashboard" href="dashboard">Dashboard</a>
                 <a class="products" href="products.php" >Products</a>
                 <a class="users" href="users.php">Users</a>
                  <a class="logout btn btn-danger btn-md " href="logout.php">Logout </a>
@@ -132,7 +146,7 @@ if(isset($_SESSION['user'])) {
                    
 
           
-             <table class=" highest_selling table table-bordered  table-light ">
+             <table class=" highest_selling  table table-bordered  table-light ">
 
                    <caption class="table-header">Highest selling products<caption>
                 
@@ -242,7 +256,7 @@ if(isset($_SESSION['user'])) {
                 
             </table>
             <table class="daily_sales table table-bordered table-light">
-                <caption>Daily Sales</caption>
+                <caption class="daily">Daily Sales</caption>
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -273,8 +287,25 @@ if(isset($_SESSION['user'])) {
                     $conn->query("INSERT INTO  daily_sales(product_name, quanity_sold, date , total) VALUES('weet-bix cearal' , 5, '2023-05-16', 200.05) ");
                     $conn->query("INSERT INTO daily_sales(product_name, quanity_sold, date, total) VALUES('portable bluetooth speaker', 6, '2023-05-17', 300.05)");
                     $conn->query("INSERT INTO daily_sales(product_name, quanity_sold, date, total) VALUES('Future Life ceareal x3', 4, '2023-05-18', 108.50)");
-                    $conn-query("INSERT INTO  daily_sales(product_name, quanity_sold, date, total) VALUES('portable XWS saw', 3, '2023-05-19', 150.00)");
+                    $conn->query("INSERT INTO  daily_sales(product_name, quanity_sold, date, total) VALUES('portable XWS saw', 3, '2023-05-19', 150.00)");
                     $conn->query("INSERT INTO  daily_sales(product_name, quanity_sold, date, total)VALUES('Hasbro Toystory board game toys', 2 , '2023-05-19 ', 50.00)");
+                    $conn->query("INSERT INTO daily_sales(product_name, quanity_sold, date, total) VALUES('Hasbro Marvel Legends game toys', 3, '2023-05-20', 45.05)");
+                    $conn->query("INSERT INTO daily_sales(product_name, quanity_sold, date, total) VALUES('gardening tools', 2 , '2023-05-21', 25.01 )");
+                    $conn->query("INSERT INTO  daily_sales(product_name, quanity_sold, date, total) VALUES('buble-wrap', 5 , '2023-05-22', 100.05)");
+                    $stmt = $conn->prepare("SELECT * FROM daily_sales");
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+
+                    foreach($result as $row) {
+
+                        echo "<tr>";
+                        echo "<td> $row[id] </td>";
+                        echo "<td> $row[product_name] </td>";
+                        echo "<td> $row[quanity_sold] </td>";
+                        echo "<td> $row[date] </td>";
+                        echo "<td> $row[total] </td>";
+                        echo "</tr>";
+                    }
                     
 
 

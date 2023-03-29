@@ -12,7 +12,7 @@
     <title>Products page </title>
 </head>
 <body>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="container">
         <div class="row">
             <form class="form col-lg-6 col-md-6 col-sm-12 col-xs-12" action="insert_product.php" method="POST">
                 <label for="product_name" class="product-name"> Enter Product name
@@ -21,9 +21,25 @@
                 <label for="quanity_sold" > Enter quanity amount
                     <input type="number" min="1" max="100"  class="quanity" name="quanity" >
                 </label>
-                <label for="price" >$
-                    <input type="text" class="price" name="productprice"  placeholder="Enter price">
+                <label for="price" class="price-label" > Enter price
+                    <input type="text" class="price" name="productprice">
                 </label>
+                <button type="submit" class="add btn btn-success" name="add">Add</button>
+
+                <table class="products-table table table-dark">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Quanity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        
+                        ?>
+                    </tbody>
+                </table>
 
 
             </form>

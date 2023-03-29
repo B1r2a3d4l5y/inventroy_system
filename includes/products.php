@@ -24,9 +24,9 @@
                 <label for="price" class="price-label" > Enter price
                     <input type="text" class="price" name="productprice">
                 </label>
-                <button type="submit" class="add btn btn-success" name="add">Add</button>
+                <button type="submit" class="add btn btn-success btn-md" name="add">Add</button>
 
-                <table class="products-table table table-dark">
+                <table class="products-table table table-light">
                     <thead>
                         <tr>
                             <th>Product Name</th>

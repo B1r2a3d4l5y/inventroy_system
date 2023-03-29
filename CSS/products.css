@@ -20,7 +20,7 @@
 .price-label {
     display: block;
     position: relative;
-    bottom: 30px;
+    bottom: 20px;
     
 
 }
@@ -37,6 +37,11 @@
 .add {
     display: inline-block;
     position: relative;
-    top: 40px;
+    top: 30px;
     left: 130px;
+}
+.products-table {
+    display: inline-block;
+    position: relative;
+    margin-top: 100px;
 }

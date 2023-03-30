@@ -3,6 +3,7 @@ $serverHost = "localhost";
 $dbName = "products";
 $username = "root";
 $password = "";
+
 if(isset($_POST['add'])) {
     $product_name = trim($_POST["product_name"]);
     $quanity =  trim($_POST["quanity"]);
@@ -13,18 +14,20 @@ if(isset($_POST['add'])) {
         header("Location:products.php?fields=empty");
         exit;
 
-    } else {
-        $insert = $db->prepare("INSERT INTO products(product_name , quanity, price) VALUES(:product_price, :quanity, :price) ") ;
-        $insert->bind_param(":product_name",$product_name );
-        $insert->bind_param(":quanity", $quanity);
-        $insert->bind_param(":price", $product_price);
-        $insert->execute();
-        $insert->close();
-        
-
+    }  else {
+         if(!preg_match("/[0-9]+/" , $product_price)) {
+            header("Location:products?price=isnotanumber");
+            exit;
+         } else {
+            $db = new PDO("mysql:host=$serverHost; dbname=$dbName", $username, $password);
+            $insert = $db->prepare("INSERT INTO products(product_name, quanity,  price)VALUES(:product_name, :quanity, :price)");
+            $insert->bindParam(":product_name" , $product_name);
+            $insert->bindParam(":quanity" , $quanity);
+            $insert->bindParam(":price", $product_price);
+            $insert->execute();
+         }
     }
-
-
 }
 $db = null;
+   
 ?>

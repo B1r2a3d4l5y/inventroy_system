@@ -26,7 +26,7 @@
                 </label>
                 <button type="submit" class="add btn btn-success btn-md" name="add">Add</button>
 
-                <table class="products-table table table-light">
+                <table class="products-table  table table-light">
                     <thead>
                         <tr>
                             <th>Product Name</th>
@@ -50,10 +50,13 @@
                     
 
                         while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                            echo "<tr>";
                             echo "<td> $row[product_name] <td>";
                             echo "<td> $row[quanity] </td>";
                             echo "<td> $row[price] </td>";
-                            echo "<td><a class='delete btn btn-danger'>Delete</a></td>";
+                            echo "<td><a  class='delete btn btn-danger' name=''delete' href='delete_product.php?id=$row[id]' >Delete</a></td>";
+                            echo "</tr>";
+
                         }
 
 

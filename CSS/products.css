@@ -44,4 +44,6 @@
     display: inline-block;
     position: relative;
     margin-top: 100px;
+    width: 1000%;
+    line-height: 100px;
 }

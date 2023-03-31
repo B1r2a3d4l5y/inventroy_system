@@ -36,6 +36,23 @@
                     </thead>
                     <tbody>
                         <?php
+                        $serverHost = "localhost";
+                        $dbName = "products";
+                        $username = "root";
+                        $password = "";
+
+                        $db = new PDO("mysql:host=$serverHost; $dbName", $username, $password);
+                        $stmt = $db->prepare("SELECT * FROM products");
+                        $stmt->execute();
+                        
+                        while($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                            echo "<td>$row[product_name]</td>";
+                            echo "<td>$row[quanity]</td>";
+                            echo "<td>$row[price]</td>";
+                            echo "<td><a class='delete btn btn-danger'>Delete</a></td>";
+                        }
+
+
                         
                         ?>
                     </tbody>

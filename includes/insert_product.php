@@ -25,6 +25,10 @@ if(isset($_POST['add'])) {
             $insert->bindParam(":quanity" , $quanity);
             $insert->bindParam(":price", $product_price);
             $insert->execute();
+            echo '<script language ="javascript" type="text/javascript">alert("Product successfully added/inserted")
+            </script>';
+
+            header("Location:products.php");
          }
     }
 }

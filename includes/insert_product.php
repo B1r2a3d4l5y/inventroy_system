@@ -19,7 +19,7 @@ if(isset($_POST['add'])) {
             header("Location:products?price=isnotanumber");
             exit;
          } else {
-            $db = new PDO("mysql:host=$serverHost; dbname=$dbName", $username, $password);
+            $bd = new PDO("mysql:host=$serverHost; dbname=$dbName", $username, $password)
             $insert = $db->prepare("INSERT INTO products(product_name, quanity,  price)VALUES(:product_name, :quanity, :price)");
             $insert->bindParam(":product_name" , $product_name);
             $insert->bindParam(":quanity" , $quanity);

@@ -40,10 +40,14 @@
     top: 30px;
     left: 130px;
 }
-.products-table {
-    display: inline-block;
+.products_table {
+    display: block;
     position: relative;
     margin-top: 100px;
-    width: 1000%;
-    line-height: 100px;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    line-height: 70px;
+    text-indent : 35px;
+    padding: 100px;
 }

@@ -15,10 +15,6 @@
     <div class="container">
         <div class="row">
             <form class="form col-lg-6 col-md-6 col-sm-12 col-xs-12" action="insert_product.php" method="POST">
-                <label for="id">
-                    <input typ="hidden" class="id" name="id">
-
-                </label>
 
                 <label for="product_name" class="product-name"> Enter Product name
                     <input type="text" class="product" name="product_name">
@@ -34,6 +30,7 @@
                 <table class="products-table  table  table-light ">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Product Name</th>
                             <th>Quanity</th>
                             <th>Price</th>
@@ -56,11 +53,16 @@
 
                         while($row = $result->fetch(PDO::FETCH_ASSOC)) {
                             echo "<tr>";
+                            echo "<td> $row[id] </td>";
                             echo "<td>  $row[product_name] <td>";
                             echo "<td>  $row[quanity] </td>";
                             echo "<td>  $row[price] </td>";
-                            echo "<td><a class='delete btn  btn-danger' role='button' href='delete_product.php?delete&id=$row[id]' name='deletebtn'>Delete</a></td>";
-                            echo "</tr>";
+                            echo "<form class='deleteform col-lg-6 col-md-6 col-sm-12 col-xs-12' action='delete_product.php' method='POST'>
+                            <button type='submit' class=' delete btn btn-danger' name='deletebtn'>Delete</button>
+
+                            
+                            </form>";
+
 
                         }
 

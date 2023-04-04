@@ -43,8 +43,11 @@
 }
 .products_table {
     display: inline-block;
-    position: relative;
-    top: -200px;
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    line-height: 50px;
+
 
     
 

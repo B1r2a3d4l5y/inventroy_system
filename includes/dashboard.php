@@ -55,6 +55,16 @@ if(isset($_SESSION['user'])) {
      width: 100%;
 
  }
+ .dashboard {
+    text-decoration : none;
+ }
+ .products {
+    text-decoration: none ;
+
+ }
+ .users {
+    text-decoration: none;
+ }
 
 
 

@@ -6,12 +6,12 @@ $password = "";
 
 $db = new PDO("mysql:host=$serverHost; dbname=$dbName", $username, $password);
 
-if(isset($_POST["deletebtn"])) {
+if(isset($_GET["deletebtn"])) {
     $id = $_GET["deletebtn"];
-    $delete = $db->prepare("DELETE FROM products WHERE id=?");
-    $delete->bindParam(":id", $id);
+    $delete = $db->prepare("DELETE FROM products WHERE id=$id");
     $delete->execute();
-    header("Location:products.php?Product=deleted");
+    header("Location:products.php");
+    exit;
     
 
 

@@ -57,11 +57,14 @@
                             echo "<td>  $row[product_name] <td>";
                             echo "<td>  $row[quanity] </td>";
                             echo "<td>  $row[price] </td>";
-                            echo "<form class='deleteform col-lg-6 col-md-6 col-sm-12 col-xs-12' action='delete_product.php' method='POST'>
-                            <button type='submit' class=' delete btn btn-danger' name='deletebtn'>Delete</button>
+                            echo "<td>
+                            <form class='deleteform col-lg-6 col-sm-12 col-xs-12' action='delete_product.php'method='GET' >
+                            <button type='submit' class='delete btn btn btn-danger' name='deletebtn' value='$row[id]' >Delete</button>
 
-                            
-                            </form>";
+                            </form>
+
+                            </td>";
+                            echo "</tr>";
 
 
                         }

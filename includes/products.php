@@ -10,6 +10,7 @@
 
 
     <title>Products page </title>
+    
 </head>
 <body>
     <div class="container">
@@ -23,17 +24,18 @@
                     <input type="number" min="1" max="100"  class="quanity" name="quanity" >
                 </label>
                 <label for="price" class="price-label" > Enter price
-                    <input type="number"  class="price" step="1.5" name="productprice" onchange=>
+                    <input type="number"  class="price" step="1.25" name="productprice" onchange=>
                 </label>
                 <button type="submit" class="add btn btn-success btn-md" name="add">Add</button>
 
-                <table class="products-table  table  table-light ">
+                <table class="products-table  table table-lg    table-light ">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Product Name</th>
                             <th>Quanity</th>
                             <th>Price</th>
+                            
                         </tr>
                     </thead>
                     <tbody>

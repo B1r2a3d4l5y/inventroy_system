@@ -24,17 +24,18 @@
                     <input type="number" min="1" max="100"  class="quanity" name="quanity" >
                 </label>
                 <label for="price" class="price-label" > Enter price
-                    <input type="number"  class="price" step="1.25" name="productprice" onchange=>
+                    <input type="number"  class="price" step="1.2" name="productprice" onchange=>
                 </label>
                 <button type="submit" class="add btn btn-success btn-md" name="add">Add</button>
 
-                <table class="products-table  table table-lg    table-light ">
+                <table class="products-table  table    table-light  table-lg">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Product Name</th>
                             <th>Quanity</th>
                             <th>Price</th>
+
                             
                         </tr>
                     </thead>
@@ -55,17 +56,17 @@
 
                         while($row = $result->fetch(PDO::FETCH_ASSOC)) {
                             echo "<tr>";
-                            echo "<td> $row[id] </td>";
+
                             echo "<td>  $row[product_name] <td>";
                             echo "<td>  $row[quanity] </td>";
                             echo "<td>  $row[price] </td>";
+                            echo "<td><a class='edit btn btn-primary ' href='../edit.html?id=$row[id]'>Edit</a></td>";
                             echo "<td>
-                            <form class='deleteform col-lg-6 col-sm-12 col-xs-12' action='delete_product.php'method='GET' >
-                            <button type='submit' class='delete btn btn btn-danger' name='deletebtn' value='$row[id]' >Delete</button>
-
+                            <form class='delete_form col-lg-6 col-md-6 col-sm-12' action='delete_product.php' method='GET'>
+                            <button type='submit' class='delete btn btn-danger' name='deletebtn' value='$row[id]' >Delete</button>
                             </form>
-
                             </td>";
+                            
                             echo "</tr>";
 
 

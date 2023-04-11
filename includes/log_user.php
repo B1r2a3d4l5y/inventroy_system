@@ -20,7 +20,7 @@ if(isset($_POST["login"])) {
         
         $db = new PDO("mysql:host=$serverHost; dbname=$dbname", $dbusername, $dbpassword );
 
-       $stmt = $db->prepare("SELECT * FROM  users WHERE username=$username AND password=$pass_hash ");
+       $stmt = $db->prepare("SELECT * FROM  users WHERE username=$username AND password=$password ");
         $stmt->bindParam(":username", $username);
         $stmt->bindParam(":password", $password);
         $stmt->execute();

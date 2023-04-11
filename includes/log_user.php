@@ -1,42 +1,39 @@
 <?php
-error_reporting(-1);
-ini_set('display_errors', 'On');
-require 'database.php';
+error_reporting(1);
+$serverHost = "localhost";
+$dbname = "login";
+$dbusername = "root";
+$dbpassword = "";
+
+
+
 
 if(isset($_POST["login"])) {
     $username = trim($_POST["user"]);
-    $password = $_POST["password"];
-    $pass_hash = password_hash("password" , PASSWORD_DEFAULT);
+    $password = trim($_POST["password"]);
+    $pass_hash = password_hash($password , PASSWORD_DEFAULT);
 
     if(empty($username) || empty($password)) {
         header("Location:../login.php?Fields=empty");
         exit;
     } else {
-    $stmt = $conn->prepare("SELECT * FROM  users WHERE username=? AND password=?");
-    if($stmt === FALSE) {
-        die("SQL error" );
-    } else {
-
-        $stmt->bind_param("ss", $username, $password );
-        $stmt->execute();
-            while ($stmt->fetch()) {
-                session_start();
-                $_SESSION["logged"] = 1;
-                $_SESSION["user"] = $username;
-                $_SESSION["password"] = $password;
-                header("Location:dashboard.php");
-                exit;
-                $stmt->close();
-
-
-            }
         
+        $db = new PDO("mysql:host=$serverHost; dbname=$dbname", $dbusername, $dbpassword );
 
+       $stmt = $db->prepare("SELECT * FROM  users WHERE username=$username AND password=$pass_hash ");
+        $stmt->bindParam(":username", $username);
+        $stmt->bindParam(":password", $password);
+        $stmt->execute();
+        
+        while($stmt->fetch(PDO::FETCH_ASSOC)) {
+            session_start();
+            $_SESSION["logged"] = 1;
+            $_SESSION["user"] = $username;
+            $_SESSION["password"] = $password;
+            header("Location:dashboard.php");
+            exit;
+        }
     }
-
-
-    }
-} else {
-    $conn->close();
 }
+$db = null;
 ?>

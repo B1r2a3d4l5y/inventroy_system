@@ -11,15 +11,15 @@ $dbpassword = "";
 if(isset($_POST["login"])) {
     $user = trim($_POST["user"]);
     $password = $_POST["password"];
-    $password_hash = password_hash($password , PASSWORD_DEFAULT);
+    $hash_password = password_hash($password , PASSWORD_DEFAULT);
 
     if(empty($user) || empty($password)) {
         header("Location:../login.php?Fields=empty");
         exit;
     } else {
-        // check database connection
+        // check database connection and connect
         try {
-              $db = new PDO("mysql:host=$serverHost; $dbname=$dbname", $dbusername, $dbpassword);
+              $db = new PDO("mysql:host=$serverHost; dbname=$dbname", $dbusername, $dbpassword);
               $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
               echo "connection successful";
         } catch(PDOEception $exception)  {
@@ -27,15 +27,15 @@ if(isset($_POST["login"])) {
         }
       
     }
-    $stmt = $db->prepare("SELECT *  FROM users WHERE $username=$user AND password=$password ");
-    $stmt->bindParam(":username", $user, PDO::PARAM_STR);
-    $stmt->bindParam(":password", $password, PDO::PARAM_STR);
-    $stmt->execute();
+    $stmt = $db->prepare("SELECT *  FROM  users WHERE :username=? AND :password=? ");
+    $stmt->bindParam(":username" , $user);
+    $stmt->bindParam(":password", $hash_password ) ;
     
     while($stmt->fetch(PDO::FETCH_ASSOC)) {
+        //start the session
         session_start();
-        $_SESSION["logged"] = 1;
-        $_SESSION["user"] = $user;
+        $_SESSION["logged"] = 1; // login session
+        $_SESSION["user"] = $user; // login by username
         $_SESSION["password"] = $password;
         header("Location:dashboard.php");
         exit;
@@ -43,4 +43,5 @@ if(isset($_POST["login"])) {
    
 
    }
+   //close connection 
    $db = null;

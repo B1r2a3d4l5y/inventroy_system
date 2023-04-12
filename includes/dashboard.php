@@ -144,7 +144,7 @@ if(isset($_SESSION['user'])) {
                 
             </div>
             <nav class="menu nav navbar">
-                <a class="dashboard" href="dashboard">Dashboard</a>
+                <a class="dashboard" href="dashboard.php">Dashboard</a>
                 <a class="products" href="products.php" >Products</a>
                 <a class="users" href="users.php">Users</a>
                  <a class="logout btn btn-danger btn-md " href="logout.php">Logout </a>

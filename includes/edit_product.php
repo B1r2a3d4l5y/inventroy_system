@@ -12,6 +12,7 @@ if(isset($_POST["update"])) {
     header("Location:../edit.html?price=empty");
     exit;
   } else {
-    $db->query("UPDATE TABLE products SET ")
+     $update = $db->prepare("UPDATE TABLE products SET price WHERE price=? ")
+    
   }
 }

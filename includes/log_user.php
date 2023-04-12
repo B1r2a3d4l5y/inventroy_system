@@ -1,12 +1,5 @@
 <?php
-
-$serverHost = "localhost";
-$dbname = "login";
-$dbusername = "root";
-$dbpassword = "";
-
-
-
+include("connection.php");
 
 if(isset($_POST["login"])) {
     $user = trim($_POST["user"]);
@@ -18,29 +11,29 @@ if(isset($_POST["login"])) {
         exit;
     } else {
         // check database connection and connect
-        try {
-              $db = new PDO("mysql:host=$serverHost; dbname=$dbname", $dbusername, $dbpassword);
-              $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-              echo "connection successful";
-        } catch(PDOEception $exception)  {
-            echo "connnection failed:".$exception->getMessage();
-        }
+       
       
     }
-    $stmt = $db->prepare("SELECT *  FROM  users WHERE :username=$user AND :password=$hash_password ");
+     $stmt = $db->prepare("SELECT *  FROM  users WHERE :username=$user AND :password=$hash_password ");
     $stmt->bindParam(":username" , $user);
     $stmt->bindParam(":password", $password ) ;
+    var_dump($stmt);
     
     while($stmt->fetch(PDO::FETCH_ASSOC)) {
         //start the session
-        session_start();
+         session_start();
         $_SESSION["logged"] = 1; // login session
         $_SESSION["user"] = $user; // login by username
-        header("Location:dashboard.php");
+        $_SESSION["password"] = $hash_password;
+        header("Location: dashboard.php");
         exit;
     }
+   
    
 
    }
    //close connection 
    $db = null;
+
+
+?>

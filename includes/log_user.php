@@ -1,5 +1,5 @@
 <?php
-error_reporting(1);
+
 $serverHost = "localhost";
 $dbname = "login";
 $dbusername = "root";
@@ -27,16 +27,15 @@ if(isset($_POST["login"])) {
         }
       
     }
-    $stmt = $db->prepare("SELECT *  FROM  users WHERE :username=? AND :password=? ");
+    $stmt = $db->prepare("SELECT *  FROM  users WHERE :username=$user AND :password=$hash_password ");
     $stmt->bindParam(":username" , $user);
-    $stmt->bindParam(":password", $hash_password ) ;
+    $stmt->bindParam(":password", $password ) ;
     
     while($stmt->fetch(PDO::FETCH_ASSOC)) {
         //start the session
         session_start();
         $_SESSION["logged"] = 1; // login session
         $_SESSION["user"] = $user; // login by username
-        $_SESSION["password"] = $password;
         header("Location:dashboard.php");
         exit;
     }

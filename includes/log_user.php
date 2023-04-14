@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors' , 1);
+//start session
 session_start();
 
 $serverHost = "localhost";
@@ -10,14 +13,14 @@ $dbpassword = "";
     $db = new PDO("mysql:host=$serverHost; dbname=$dbname", $dbusername, $dbpassword);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "connection sucessful";
- } catch(PDOException $exception) {
+
+  }  catch(PDOException $exception) {
     echo "connection failed".$excption->getMessage();
+  }
 
+  
 
-
- }
-
-if(isset($_POST["login"])) {
+ if(isset($_POST["login"])) {
     
     $user = trim($_POST["user"]);
     $password = trim($_POST["password"]);
@@ -27,19 +30,30 @@ if(isset($_POST["login"])) {
         header("Location:../login.php?fields=empty");
         exit;
     } else {
-        $query = $db->query("SELECT * FROM users  WHERE  username=$user AND  password=$hash_password");
-        $result= $db->prepare($query);
-        $result->execute(array("username"=> $user , "password" =>$hash_password));
+        $result = $db->prepare("SELECT * FROM  users WHERE  :username=$user AND :password=$password ");
+        $result->bindParam(":username", $user, PDO::PARAM_STR);
+        $result->bindParam(":password", $password, PDO::PARAM_STR);
+        $result->execute();
+        
+    
+        
         while($result->fetch(PDO::FETCH_ASSOC)) {
-            $_SESSION["logged"] = 1;
+            $_SESSION["logged"] = 1 ;
             $_SESSION["user"] = $user;
-            header("Location: dashboard.php");
+            header("Location:dashboard.php");
             exit;
         }
+
+        
 
 
      
     }
 }
+
+
+ 
+
+
 $db = null;
 ?>

@@ -30,10 +30,8 @@ $dbpassword = "";
         header("Location:../login.php?fields=empty");
         exit;
     } else {
-        $result = $db->prepare("SELECT * FROM  users WHERE  :username=$user AND :password=$password ");
-        $result->bindParam(":username", $user, PDO::PARAM_STR);
-        $result->bindParam(":password", $password, PDO::PARAM_STR);
-        $result->execute();
+        $result = $db->prepare("SELECT * FROM  users WHERE  :username=? AND :password=? ");
+        $result->execute(array(":username" => $user , ":password"=> $password));
         
     
         

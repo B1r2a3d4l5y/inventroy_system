@@ -177,6 +177,7 @@ if(isset($_SESSION['user'])) {
                     <?php
                     mysqli_report( MYSQLI_REPORT_STRICT);
                     ini_set('memory_limit', -1);
+                    
                     $serverHost = "localhost";
                     $Username = "root";
                     $dbPassword = "";

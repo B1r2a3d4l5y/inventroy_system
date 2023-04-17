@@ -13,14 +13,7 @@ $dbpassword = "";
     $db = new PDO("mysql:host=$serverHost; dbname=$dbname", $dbusername, $dbpassword);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "connection sucessful";
-
-  }  catch(PDOException $exception) {
-    echo "connection failed".$excption->getMessage();
-  }
-
-  
-
- if(isset($_POST["login"])) {
+    if(isset($_POST["login"])) {
     
     $user = trim($_POST["user"]);
     $password = trim($_POST["password"]);
@@ -30,17 +23,18 @@ $dbpassword = "";
         header("Location:../login.php?fields=empty");
         exit;
     } else {
-        $result = $db->prepare("SELECT * FROM  users WHERE  :username=? AND :password=? ");
-        $result->execute(array(":username" => $user , ":password"=> $password));
-        
-    
-        
+        $result = $db->prepare("SELECT * FROM users WHERE :username AND :password=$password");
+        $result->bindParam(":username", $user, PDO::PARAM_STR);
+        $result->bindParam(":password", $password, PDO::PARAM_STR );
+        $result->execute();
         while($result->fetch(PDO::FETCH_ASSOC)) {
-            $_SESSION["logged"] = 1 ;
+            $_SESSION["logged"] = 1;
             $_SESSION["user"] = $user;
+            $_SESSION["password"]= $password;
             header("Location:dashboard.php");
             exit;
         }
+
 
         
 
@@ -50,6 +44,16 @@ $dbpassword = "";
 }
 
 
+
+ 
+  } catch(PDOException $exception) {
+    echo "connection failed".$exception->getMessage();
+
+  }
+
+  
+
+ 
  
 
 

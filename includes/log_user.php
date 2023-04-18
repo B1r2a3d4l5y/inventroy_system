@@ -1,18 +1,15 @@
 <?php
 error_reporting(E_ALL);
-ini_set('display_errors' , 1);
-//start session
+ini_set('display_errors', 1);
 session_start();
-
 $serverHost = "localhost";
 $dbname = "login";
 $dbusername = "root";
 $dbpassword = "";
 
- try {
-    $db = new PDO("mysql:host=$serverHost; dbname=$dbname", $dbusername, $dbpassword);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "connection sucessful";
+  
+   
+
     if(isset($_POST["login"])) {
     
     $user = trim($_POST["user"]);
@@ -20,42 +17,34 @@ $dbpassword = "";
     $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
     if(empty($user) || empty($password)) {
-        header("Location:../login.php?fields=empty");
-        exit;
+      header("Location:../login.php");
+      exit;
     } else {
-        $result = $db->prepare("SELECT * FROM users WHERE :username AND :password=$password");
-        $result->bindParam(":username", $user, PDO::PARAM_STR);
-        $result->bindParam(":password", $password, PDO::PARAM_STR );
-        $result->execute();
-        while($result->fetch(PDO::FETCH_ASSOC)) {
-            $_SESSION["logged"] = 1;
-            $_SESSION["user"] = $user;
-            $_SESSION["password"]= $password;
-            header("Location:dashboard.php");
-            exit;
-        }
+      $db = new PDO("mysql:host=$serverHost; dbname=$dbname", $dbusername, $dbpassword);
+      $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      
+      $statement = $db->prepare("SELECT * FROM users WHERE :username=$user AND :password=$password") ;
 
+      $statement->execute(array(':username'=>$user , ':password'=> $password));
 
-        
+      $num_rows = $statement->rowCount();
+      
+      if($num_rows > 0) {
+        $_SESSION["logged "] =1 ;
+        $_SESSION["user"] = $user;
+        header("Location:dashboard.php");
+        exit;
 
+      } else {
+        header("Location:../login.php?login=failed");
+        exit;
+      }
 
-     
+     }
     }
-}
 
-
-
- 
-  } catch(PDOException $exception) {
-    echo "connection failed".$exception->getMessage();
-
-  }
-
-  
-
- 
- 
-
+   
 
 $db = null;
-?>
+
+

@@ -25,8 +25,7 @@ if(isset($_POST['add'])) {
             $insert->bindParam(":quanity" , $quanity);
             $insert->bindParam(":price", $product_price);
             $insert->execute();
-            $msg = "Products successfully inserted/added";
-            header("Location:products.php");
+            header("Location:products.php?insert=sucessful");
          }
     }
 }

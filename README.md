@@ -25,7 +25,8 @@ Please run this project in xampp or wampp
 
 How to get access to this project
 
-You can fork it 
-You can also downlod it from the code section in my profile
+You can fork it.
+
+You can also downlod it from the code section in my profile.
 
 

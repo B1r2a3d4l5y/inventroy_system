@@ -1,6 +1,5 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+
 session_start();
 $serverHost = "localhost";
 $dbname = "login";
@@ -17,6 +16,11 @@ try {
 
  $message =  $error->getMessage();
   }
+  
+  if(isset($_SESSION["user"])) {
+    header("Location:dashboard.php");
+    exit;
+  }
  
 
 if(isset($_POST["login"]) ) {
@@ -26,19 +30,22 @@ if(isset($_POST["login"]) ) {
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     if(empty($user) || empty($password_hash)) {
-      header("Location:../login.php?fields=empty");
+      header("Location:../login.php?fields=please fill in the fields");
       exit;
 
     }  else {
-      $statement = $db->prepare("SELECT * FROM users WHERE :username=$user AND  :password=$password_hash");
-   $statement->bindParam(":username", $user, PDO::PARAM_STR);
-   $statement->bindParam(":password" , $password_hash, PDO::PARAM_STR);
-   $statement->execute();
+
+      $query = "SELECT * FROM  users WHERE :username=$user AND :password=$password_hash";
+
+      $statement = $db->prepare($query);
+      $statement->bindParam(":username", $user, PDO::PARAM_STR);
+      $statement->bindParam(":password", $password_hash, PDO::PARAM_STR);
+      $statement->execute();
+
 
       while ($statement->fetch(PDO::FETCH_ASSOC)) {
          $_SESSION["logged"] = 1;
         $_SESSION["user"] = $user;
-        $_SESSION["password"] = $password_hash;
         header("Location:dashboard.php");
         exit;
       }

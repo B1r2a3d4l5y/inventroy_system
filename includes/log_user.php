@@ -1,6 +1,9 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ session_start();
 
-session_start();
+
 $serverHost = "localhost";
 $dbname = "login";
 $dbusername = "root";
@@ -8,28 +11,17 @@ $dbpassword = "";
 
 try {
   $db = new PDO("mysql:host=$serverHost; dbname=$dbname", $dbusername, $dbpassword);
-
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  echo "connection suceesful";
+
   
-  } catch(PDOEXception $error) {
 
- $message =  $error->getMessage();
-  }
-  
-  if(isset($_SESSION["user"])) {
-    header("Location:dashboard.php");
-    exit;
-  }
- 
+  if(isset($_POST["login"]) ) {
 
-if(isset($_POST["login"]) ) {
-
-    $user = trim($_POST["user"] ) ;
-    $password = trim($_POST["password"]);
+    $user = trim($_POST["user"] )  ;
+    $password = trim($_POST["password"]) ;
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    if(empty($user) || empty($password_hash)) {
+    if(empty($user) || empty($password)) {
       header("Location:../login.php?fields=please fill in the fields");
       exit;
 
@@ -38,17 +30,23 @@ if(isset($_POST["login"]) ) {
       $query = "SELECT * FROM  users WHERE :username=$user AND :password=$password_hash";
 
       $statement = $db->prepare($query);
-      $statement->bindParam(":username", $user, PDO::PARAM_STR);
-      $statement->bindParam(":password", $password_hash, PDO::PARAM_STR);
-      $statement->execute();
+      $statement->execute(array(
+        ':username' => $user,
+        ':password' => $password_hash
+      ));
+      $num_rows = $statement->rowCount();
 
 
-      while ($statement->fetch(PDO::FETCH_ASSOC)) {
-         $_SESSION["logged"] = 1;
+      if($num_rows > 0) {
+        $_SESSION["logged"] = 1;
         $_SESSION["user"] = $user;
         header("Location:dashboard.php");
         exit;
+      } else {
+        header("Location:../login.php=failed");
+        exit;
       }
+      
        
       
       
@@ -59,4 +57,14 @@ if(isset($_POST["login"]) ) {
 
 
   }
+  
+  
+  } catch(PDOEXception $error) {
+    $message = $error->getMessage();
+    echo $message;
+  }
+  
+  
+
+
   $db = null;

@@ -1,8 +1,9 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
- session_start();
 
+
+ session_start();
 
 $serverHost = "localhost";
 $dbname = "login";
@@ -12,6 +13,10 @@ $dbpassword = "";
 try {
   $db = new PDO("mysql:host=$serverHost; dbname=$dbname", $dbusername, $dbpassword);
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  if(isset($_SESSION["user"]) ) {
+    header("Location:dashboard.php");
+  }
 
   
 
@@ -27,23 +32,14 @@ try {
 
     }  else {
 
-      $query = "SELECT * FROM  users WHERE :username=$user AND :password=$password_hash";
-
-      $statement = $db->prepare($query);
-      $statement->execute(array(
-        ':username' => $user,
-        ':password' => $password_hash
-      ));
-      $num_rows = $statement->rowCount();
+      $statement = $db->prepare("SELECT * FROM users WHERE username=:username AND password=:password ");
+      $statement->execute(['username'=>$user, 'password' =>$password]);
 
 
-      if($num_rows > 0) {
+      while($statement->fetch(PDO::FETCH_ASSOC)) {
         $_SESSION["logged"] = 1;
         $_SESSION["user"] = $user;
         header("Location:dashboard.php");
-        exit;
-      } else {
-        header("Location:../login.php=failed");
         exit;
       }
       

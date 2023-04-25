@@ -45,10 +45,10 @@
                         $dbName = "products";
                         $username = "root";
                         $password = "";
+                        try {
+                            $db = new PDO("mysql:host=$serverHost; dbname=$dbName", $username, $password);
 
-                        $db = new PDO("mysql:host=$serverHost; dbname=$dbName", $username, $password);
-
-                        $stmt = ("SELECT * FROM products");
+                        $stmt =  ("SELECT * FROM products");
                         $result = $db->prepare($stmt);
                         $result->execute();
                         
@@ -71,6 +71,15 @@
 
 
                         }
+
+                        } catch(PDOException $exception) {
+                            $message =  $exception->getMessage();
+                            echo $message;
+
+
+                        }
+
+                        
 
 
                         

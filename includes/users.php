@@ -12,17 +12,31 @@
     <title>Users</title>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <form class="insert_form col-lg-6 col-md-6 col-sm-12 col-xs-12" >
+    <div class="container-fluid">
+        
+            <form class="insert_form col-lg-6 col-md-6 col-sm-12 col-xs-12" action="insert_user.php" method="POST" >
                <label for="username"> Enter username
                 <input type="text" class="username" name="username">
                </lablel>
                <label for="password"></label> Enter Passsword
+               <button class="add_user btn btn-success">Add new user</button>
+
+               <table class="users-table table table-light ">
+                <thead>
+                    <th>Username</th>
+                    <th>Password</th>
+
+                </thead>
+                <tbody>
+                    <?php
+
+
+                    ?>
+                </tbody>
+
+               </table>
 
             </form>
-
-        </div>
 
     </div>
     

@@ -12,7 +12,7 @@ try {
     $id = $_GET["deletebtn"];
     $delete = $db->prepare("DELETE FROM products WHERE id=$id");
     $delete->execute();
-    header("Location:products.php");
+    header("Location:products.php?product=deleted");
     exit;
     
 

@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.users_table {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 2000px;
+
+}

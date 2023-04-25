@@ -10,6 +10,7 @@ if(isset($_POST['add'])) {
     $product_price =  trim($_POST["productprice"]);
 
     $db = new PDO("mysql:host=$serverHost; dbname=$dbName", $username, $password);
+    
     if(empty($product_name) || empty($quanity) || empty($product_price)) {
         header("Location:products.php?fields=empty");
         exit;

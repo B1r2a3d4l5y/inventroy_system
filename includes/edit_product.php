@@ -4,15 +4,10 @@ $dbname = "products";
 $username = "root";
 $password = "";
 
-$db = new PDO("mysql:host=$serverHost; dbname=dbname=$dbname", $username, $password);
+try {
+  $db = new PDO("mysql:host=$serverHost; dbname=$dbname", $username, $password);
+   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if(isset($_POST["update"])) {
-  $product_price = $_POST["product-price"];
-  if(empty($product_price) ) {
-    header("Location:../edit.html?price=empty");
-    exit;
-  } else {
-     $update = $db->prepare("UPDATE TABLE products SET price WHERE price=? ")
-    
-  }
+
 }
+

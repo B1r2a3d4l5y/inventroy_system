@@ -46,9 +46,9 @@
                         $username = "root";
                         $password = "";
                         try {
-                            $db = new PDO("mysql:host=$serverHost; dbname=$dbName", $username, $password);
-
-                        $stmt =  ("SELECT * FROM products");
+                          $db = new PDO("mysql:host=$serverHost; dbname=$dbName", $username, $password);
+                           $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                         $stmt =  ("SELECT * FROM products");
                         $result = $db->prepare($stmt);
                         $result->execute();
                         

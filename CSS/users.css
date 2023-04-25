@@ -3,9 +3,15 @@
     padding: 0;
     box-sizing: border-box;
 }
+.add_user {
+    display: inline-block;
+    position: relative;
+   margin-left: 100px;
+}
 .users_table {
     display: inline-block;
     position: relative;
-    margin-bottom: 2000px;
+    padding-bottom: 600px;
+
 
 }

@@ -143,8 +143,10 @@ if(isset($_SESSION['user'])) {
             <div class="logo-box col-lg-6 col-md-6 colsm-12">
                 <a class="logo nav navbar-brand">Inventroy System </a>
                 
+                
             </div>
             <nav class="menu nav navbar">
+                <p> Welcome: <?php echo $_SESSION["user"] ?></p>
                 <a class="dashboard" href="dashboard.php">Dashboard</a>
                 <a class="products" href="products.php" >Products</a>
                 <a class="users" href="users.php">Users</a>

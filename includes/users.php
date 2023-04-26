@@ -40,7 +40,7 @@
 
                </label> 
 
-               <button class="add_user btn btn-success">Add new user</button>
+               <button class="add_user btn btn-success" name="add_user">Add new user</button>
 
 
                <table class="users-table table table-light ">

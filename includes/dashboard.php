@@ -1,18 +1,10 @@
 <?php
-session_start();
-if(isset($_SESSION['user'])) {
+if(isset($_SESSION["user"])) {
     header("Location:dashboard.php");
     exit;
-    
-
-} 
-
-
-
-
-
-
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -146,7 +138,6 @@ if(isset($_SESSION['user'])) {
                 
             </div>
             <nav class="menu nav navbar">
-                <p> Welcome: <?php echo $_SESSION["user"] ?></p>
                 <a class="dashboard" href="dashboard.php">Dashboard</a>
                 <a class="products" href="products.php" >Products</a>
                 <a class="users" href="users.php">Users</a>

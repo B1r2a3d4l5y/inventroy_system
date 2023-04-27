@@ -31,7 +31,6 @@
                 <table class="products-table  table    table-light  table-lg">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Product Name</th>
                             <th>Quanity</th>
                             <th>Price</th>
@@ -45,6 +44,7 @@
                         $dbName = "products";
                         $username = "root";
                         $password = "";
+                        
                         try {
                           $db = new PDO("mysql:host=$serverHost; dbname=$dbName", $username, $password);
                            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

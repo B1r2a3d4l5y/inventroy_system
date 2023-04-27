@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
  session_start();
 
@@ -35,27 +33,29 @@ try {
 
   } else {
     $statement = $db->prepare("SELECT * FROM users WHERE username=:username AND password=:password ");
-    $statement->bindValue("username", $user, PDO::PARAM_STR);
-    $statement->bindValue("password", $password, PDO::PARAM_STR);
+    $statement->bindValue("username", $user,  PDO::PARAM_STR);
+    $statement->bindValue("password", $password, PDO::PARAM_STR );
     $statement->execute();
+    
 
 
       while($statement->fetch(PDO::FETCH_ASSOC)) {
         $_SESSION["logged"] = 1;
         $_SESSION["user"] = $user;
-        header("Location:dashboard.php");
-        exit;
+          header("Location:dashboard.php");
+          exit;
+        
+        
       }
   } 
   
   
-  } catch(PDOEXception $error) {
+  } 
+  
+} catch(PDOEXception $error) {
     $message = $error->getMessage();
     echo $message;
   }
-  
-}
 
-
-
-  $db = null;
+$db = null;
+?>

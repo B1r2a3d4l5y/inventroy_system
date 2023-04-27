@@ -31,23 +31,32 @@ try {
 
 
 
+  }elseif(empty($password) ) {
+    header("Location:../login.php?password=Please enter your password");
+    exit;
+  } elseif($password != $password){
+    header("Location:../login.php?password=Password is incorrect");
+    exit;
+
   } else {
     $statement = $db->prepare("SELECT * FROM users WHERE username=:username AND password=:password ");
-    $statement->bindValue("username", $user,  PDO::PARAM_STR);
-    $statement->bindValue("password", $password, PDO::PARAM_STR );
-    $statement->execute();
-    
-
+    if(!$statement)  {
+      echo "SQL error";
+    } else {
+     
+      $statement->execute(array(
+        'username' => $user,
+        'password' => $password
+      ));
 
       while($statement->fetch(PDO::FETCH_ASSOC)) {
         $_SESSION["logged"] = 1;
         $_SESSION["user"] = $user;
-          header("Location:dashboard.php");
-          exit;
-        
-        
+        header("Location:dashboard.php");
+        exit;
       }
-  } 
+    }
+  }
   
   
   } 

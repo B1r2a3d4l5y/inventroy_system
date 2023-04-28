@@ -39,15 +39,11 @@ try {
     exit;
 
   } else {
-    $statement = $db->prepare("SELECT * FROM users WHERE username=:username AND password=:password ");
-    if(!$statement)  {
-      echo "SQL error";
-    } else {
-     
-      $statement->execute(array(
-        'username' => $user,
-        'password' => $password
-      ));
+    $statement = $db->prepare("SELECT * FROM  `users`  LIMIT `username=$user`, `password=$password` ");
+    
+    $statement->bindParam('username', $user , PDO::PARAM_STR);
+    $statement->bindParam('password', $password, PDO::PARAM_STR);
+    $statement->execute();
 
       while($statement->fetch(PDO::FETCH_ASSOC)) {
         $_SESSION["logged"] = 1;
@@ -59,12 +55,9 @@ try {
   }
   
   
-  } 
-  
-} catch(PDOEXception $error) {
+  } catch(PDOException $error) {
     $message = $error->getMessage();
     echo $message;
   }
 
 $db = null;
-?>

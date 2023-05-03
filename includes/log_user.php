@@ -1,10 +1,4 @@
 <?php
-
- session_start();
-
-
- 
-
 $serverHost = "localhost";
 $dbname = "login";
 $dbusername = "root";
@@ -31,31 +25,21 @@ try {
 
 
 
-  }elseif(empty($password) ) {
-    header("Location:../login.php?password=Please enter your password");
-    exit;
-  } elseif(!password_verify($password, $password_hash)){
-    header("Location:../login.php?password=Password is incorrect");
-    exit;
-
   } else {
-    $statement = $db->prepare("SELECT  *  FROM  `users`  WHERE  `username=:user` AND  `password=:password`  ");
-    
-    $statement->execute(['username' => $user, 'password'=> $password ]);
+    $statement = $db->prepare("SELECT * FROM `users` WHERE `username=:username`AND `password=:password` ");
+    $statement->bindParam('username', $user, PDO::PARAM_STR);
+    $statement->bindParam('password', $password, PDO::PARAM_STR);
+    $statement->execute();
 
-      while($statement->fetch(PDO::FETCH_ASSOC)) {
-        $_SESSION["logged"] = 1;
-        $_SESSION["user"] = $user;
-        header("Location:dashboard.php");
-        exit;
-      }
+    while($statement->fetch(PDO::FETCH_ASSOC)) {
+      $_SESSION["logged"] = 1;
+      $_SESSION["user"] = $user;
+      header("Location:dashboard.php");
+      exit;
     }
-  }
-  
-  
-  } catch(PDOException $error) {
+  }  
+} 
     $message = $error->getMessage();
     echo $message;
+  } catch(PDOException $error) {
   }
-
-$db = null;

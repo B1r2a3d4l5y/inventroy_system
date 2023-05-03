@@ -14,7 +14,7 @@ try {
         $userPassword_hash = password_hash($userPassword);
 
         if(empty($user) || empty($userPassword)) {
-          header("Location:user.php?fieldsPlease fill them in");
+          header("Location:user.php?fields=Please fill them in");
           exit;
         }
 

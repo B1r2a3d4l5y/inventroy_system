@@ -33,7 +33,7 @@
         <div class="row">
              <form class="insert_form col-lg-6 col-md-6 col-sm-12 col-xs-12" action="insert_user.php" method="POST" >
                <label for="username"> Enter username
-                <input type="text" class="username" name="username">
+                <input type="text" class="username" name="user">
                </lablel>
                <label for="password">
                 <input type="password"class="userpassword" name="userpassword" placeholder="Enter user password">

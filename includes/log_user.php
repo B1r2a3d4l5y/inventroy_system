@@ -20,8 +20,8 @@ try {
 
   if(isset($_POST["login"]) ) {
 
-    $user = trim($_POST["user"] )  ;
-    $password = trim($_POST["password"]) ;
+    $user = trim($_POST['user'] )  ;
+    $password = trim($_POST['password']) ;
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     if(empty($user) || empty($password)) {
@@ -34,16 +34,14 @@ try {
   }elseif(empty($password) ) {
     header("Location:../login.php?password=Please enter your password");
     exit;
-  } elseif($password != $password){
+  } elseif(!password_verify($password, $password_hash)){
     header("Location:../login.php?password=Password is incorrect");
     exit;
 
   } else {
-    $statement = $db->prepare("SELECT * FROM  `users`  LIMIT `username=$user`, `password=$password` ");
+    $statement = $db->prepare("SELECT  *  FROM  `users`  WHERE  `username=:user` AND  `password=:password`  ");
     
-    $statement->bindParam('username', $user , PDO::PARAM_STR);
-    $statement->bindParam('password', $password, PDO::PARAM_STR);
-    $statement->execute();
+    $statement->execute(['username' => $user, 'password'=> $password ]);
 
       while($statement->fetch(PDO::FETCH_ASSOC)) {
         $_SESSION["logged"] = 1;

@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "inventroy system",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"vue.features.codeActions.enable": false
+	}
+}

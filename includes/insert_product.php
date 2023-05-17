@@ -17,18 +17,15 @@ try {
 
     }  else {
          if(!preg_match("/[0-9]+/" , $product_price)) {
-            header("Location:products?price=isnotanumber");
+            header("Location:products?price=is nota number");
             exit;
          } else {
-            $bd = new PDO("mysql:host=$serverHost; dbname=$dbName", $username, $password);
-            $insert = $db->prepare("INSERT INTO products(product_name, quanity,  price)VALUES(:product_name, :quanity, :price)");
-            $insert->bindValue(":product_name" , $product_name, PDO::PARAM_STR);
-            $insert->bindValue(":quanity" , $quanity, PDO::PARAM_INT);
-            $insert->bindValue(":price", $product_price, PDO::PARAM_INT);
-            $insert->execute();
-            header("Location:products.php?insert=sucessful");
+            $sql = "INSERT INTO products(product_name, quanity, price) VALUES(?,?,?) ";
+            $statement = $db->prepare($sql);
+            $statement->execute([$product_name, $quanity, $product_price]);
+            header("Location:products.php?product=product= product suceessfuly inserted");
             exit;
-         }
+        }
     }
 }
 } catch(PDOException $exception) {

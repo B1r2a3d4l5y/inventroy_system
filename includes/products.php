@@ -24,7 +24,7 @@
                     <input type="number" min="1" max="100"  class="quanity" name="quanity" >
                 </label>
                 <label for="price" class="price-label" > Enter price
-                    <input type="number"  class="price" step="1.2" name="productprice" onchange=>
+                    <input type="number"  class="price" step="1.2" name="productprice">
                 </label>
                 <button type="submit" class="add btn btn-success btn-md" name="add">Add</button>
 

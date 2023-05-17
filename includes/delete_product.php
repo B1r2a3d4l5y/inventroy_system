@@ -10,8 +10,8 @@ try {
 
      if(isset($_GET["deletebtn"])) {
     $id = $_GET["deletebtn"];
-    $delete = $db->prepare("DELETE FROM products WHERE id=$id");
-    $delete->execute();
+    $delete = $db->prepare("DELETE FROM products WHERE id=?");
+    $delete->execute([$id]);
     header("Location:products.php?product=deleted");
     exit;
     

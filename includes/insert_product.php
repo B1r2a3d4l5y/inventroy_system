@@ -33,6 +33,5 @@ try {
     echo $errormessge;
 }
 
-
 $db = null;
    

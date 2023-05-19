@@ -25,7 +25,13 @@
             position: relative;
             top: 70px;
             left: 50px;
+            width: 1000%;
+            height: auto;
+
+
         }
+        
+        
     </style>
 </head>
 <body>
@@ -33,7 +39,7 @@
         <div class="row">
              <form class="insert_form col-lg-6 col-md-6 col-sm-12 col-xs-12" action="insert_user.php" method="POST" >
                <label for="username"> Enter username
-                <input type="text" class="username" name="user">
+                <input type="text" class="username" name="username">
                </lablel>
                <label for="password">
                 <input type="password"class="userpassword" name="userpassword" placeholder="Enter user password">
@@ -47,10 +53,43 @@
                 <thead>
                     <th>Username</th>
                     <th>Password</th>
+                    <th>Action</th>
 
                 </thead>
                 <tbody>
                     <?php
+                    $serverHost = "localhost";
+                    $dbName = "login";
+                    $dbUsername ="root";
+                    $dbPassword = "";
+
+                    try {
+                         $db = new PDO("mysql:host=$serverHost; dbname=$dbName", $dbUsername, $dbPassword);
+                         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                          $sql = "SELECT * FROM users ";
+                          $statement = $db->prepare($sql);
+                          $statement->execute();
+
+                          while($row = $statement->fetch(PDO::FETCH_ASSOC) ){
+                            echo "<tr>";
+                            echo "<td> $row[username]</td>";
+                            echo "<td> $row[password]</td>";
+                            echo "<td><form class='delete_user' action='delete_user.php' method='POST'>
+                            <button type='submit' class='delete_user_btn btn btn-danger' name='delete_user' value='$row[uid]'>Delete</button>
+                            </form></td>";
+
+                          }
+
+
+
+
+ 
+                    } catch(PDOException $error) {
+                        $errMessage = $error->getMessage();
+                        echo $errMessage;
+
+                    }
 
 
                     ?>

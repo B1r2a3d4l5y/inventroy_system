@@ -9,16 +9,26 @@ try {
       $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
       if(isset($_POST["add_user"])) {
-        $user = trim($_POST["username"]);
-        $userPassword = trim($_POST["userpassword"]);
-        $userPassword_hash = password_hash($userPassword);
+        $username = trim($_POST["username"]);
+        $password = trim($_POST["userpassword"]);
+        $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
-        if(empty($user) || empty($userPassword)) {
-          header("Location:user.php?fields=Please fill them in");
+        if(empty($username) || empty($password)) {
+          header("Location:users.php?Fields=fieidls are empty please fill them in");
           exit;
-        }
+        } else {
+          $sql = "INSERT INTO users(username, password) VALUES(?,?)";
+          $statement = $db->prepare($sql);
+          $statement->execute([$username, $password]);
+          header("Location:users.php?user=user successfully added");
+          exit; 
 
+          
+        }
       }
 
+} catch(PDOException $exception) {
+  $error = $exception->getMessage();
+  echo $error;
 
 }

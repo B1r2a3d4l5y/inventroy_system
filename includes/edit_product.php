@@ -8,23 +8,24 @@ try {
   $db = new PDO("mysql:host=$serverHost; dbname=$dbname", $username, $password);
    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    if(isset($_POST["update"])) {
-    $price = trim($_POST["product-price"]);
+   $price = trim($_POST["productprice"]);
+   $id = trim($_POST["id"]);
+
     if(empty($price)) {
       header("Location:../edit.html?price= please enter price");
       exit;
     } else {
-      $query = "UPDATE products SET price=:price WHERE id=:id ";
-      $statement = $db->prepare($query);
-      if(!$statement->execute() ) {
-        echo "SQL error";
-      } else {
-        $statement->execute(array(
-          'price' => $price
-        )); 
-        header("Location:products.php?product=edited");
-        exit;
+      
+      $query = "UPDATE products SET price=? WHERE id=? ";
 
-      }
+      $statement = $db->prepare($query);
+
+      $statement->execute([$price, $id]);
+
+      header("Location:products.php?product=price has being updated");
+      exit;
+    
+      
     }
      
    }
@@ -36,4 +37,5 @@ try {
 
 }
 $db = null;
+
 

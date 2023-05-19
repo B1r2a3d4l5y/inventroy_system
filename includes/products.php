@@ -62,8 +62,8 @@
                             echo "<td>  $row[price] </td>";
                             echo "<td><a class='edit btn btn-primary ' href=../edit.html?id=$row[id]'>Edit</a></td>";
                             echo "<td>
-                            <form class='delete_form col-lg-6 col-md-6 col-sm-12' action='delete_product.php' method='GET'>
-                            <button type='submit' class='delete btn btn-danger' name='deletebtn' value='$row[id]' >Delete</button>
+                            <form class='delete_form col-lg-6 col-md-6 col-sm-12' action='delete_product.php' method='POST'>
+                            <button type='submit' class='delete btn btn-danger' name='deletebtn' value='$row[uid]' >Delete</button>
                             </form>
                             </td>";
                             

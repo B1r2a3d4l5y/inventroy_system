@@ -6,8 +6,8 @@ $password = "";
 try {
     if(isset($_POST['add'])) {
     $product_name = trim($_POST["product_name"]);
-    $quanity =  trim($_POST["quanity"]);
-    $product_price =  trim($_POST["productprice"]);
+    $quanity = trim( $_POST["quanity"]);
+    $product_price =trim( $_POST["productprice"]);
 
     $db = new PDO("mysql:host=$serverHost; dbname=$dbName", $username, $password);
     

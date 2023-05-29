@@ -18,7 +18,8 @@
         .add_user {
             display:inline-block;
             position: relative;
-            left: 50px;
+            left: 100px;
+            bottom: -15px;
         }
         .users-table {
             display:inline-block;
@@ -38,8 +39,8 @@
     <div class="container-fluid">
         <div class="row">
              <form class="insert_form col-lg-6 col-md-6 col-sm-12 col-xs-12" action="insert_user.php" method="POST" >
-               <label for="username"> Enter username
-                <input type="text" class="username" name="username">
+               <label for="username"> 
+                <input type="text" class="username" name="username" placeholder="Enter username">
                </lablel>
                <label for="password">
                 <input type="password"class="userpassword" name="userpassword" placeholder="Enter user password">

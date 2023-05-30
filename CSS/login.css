@@ -28,6 +28,8 @@
         display: inline-block;
         position: relative;
         margin: 90px;
+        width: 100%;
+        left: 3px;
 
 
     }
@@ -35,7 +37,22 @@
     .password {
         display: inline-block;
         position: relative;
-        left: 50px;
+        left: 60px;
+        width: 100%;
+    }
+    .eye-icon {
+        display: inline-block;
+        position: relative;
+        bottom:  65px;
+        height: 1rem;
+        width: 1rem;
+        text-align: center;
+        left: 240px;
+        font-size: 24px;
+        cursor: pointer;
+        color: grey;
+
+
     }
 
     .login {

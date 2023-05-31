@@ -1,5 +1,5 @@
 "# inventroy-system"
-This is inventroy system I built using HTML , CSS , Bootstrap , PHP and SQL
+This is inventroy system I built using HTML , CSS , Bootstrap , Javascript, PHP and SQL
 
 front-end
 

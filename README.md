@@ -5,7 +5,10 @@ front-end
 
 HTML
 
-CSS 
+CSS
+
+JS
+
 
 Bootstrap 
 

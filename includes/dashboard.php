@@ -16,7 +16,7 @@ if(isset($_SESSION["user"])) {
     <link rel="stylesheet" href="CSS/dashbord.css">
     <style>
         ::before::after {
-    margin 0;
+    margin: 0;
     padding: 0;
 }
 

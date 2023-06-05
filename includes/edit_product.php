@@ -4,31 +4,29 @@ $dbname = "products";
 $username = "root";
 $password = "";
 
-try {
-  $db = new PDO("mysql:host=$serverHost; dbname=$dbname", $username, $password);
-  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  if (isset($_POST["update"])) {
-    $id = $_POST["update"];
-    $price = trim($_POST["product-price"]);
 
-    if (empty($price)) {
-      header("Location:../edit.html?price= please enter price");
-      exit;
-    } else {
+$db = new PDO("mysql:host=$serverHost; dbname=$dbname", $username, $password);
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-      $query = "UPDATE products SET price=:price WHERE id=:id ";
+if (isset($_POST["update"])) {
 
-      $statement = $db->prepare($query);
+  $product_id = trim($_POST["id"]);
+  $quantity = trim($_POST["quantity"]);
+  $product_price = trim($_POST["productprice"]);
 
-      $statement->execute([$id, $price]);
-
-      header("Location:products.php?products=product has being updated");
-      exit;
-    }
+  if (empty($quantity) || empty($product_price)) {
+    header("Location:../edit.php?edit=Please fill in the fields");
+    exit;
   }
-} catch (PDOException $exception) {
-  $errorMessage = $exception->getMessage();
-  echo $errorMessage;
-}
+  $update = "UPDATE products SET quantity=:quantity, price=:price WHERE id=:id";
+  $data = [
+    ':quantity' => $quantity,
+    ':price' => $product_price,
+    ':id' => $product_id
+  ];
+  $statement = $db->prepare($update);
+  $statement->execute($data);
 
-$db = null;
+  header("Location:products.php?products=product has been successfully updated");
+  exit;
+}

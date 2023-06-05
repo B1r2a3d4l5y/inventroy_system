@@ -23,7 +23,7 @@
                 </label>
 
                 <label for="quanity_sold"> Enter quanity amount
-                    <input type="number" min="1" max="100" class="quanity" name="quanity"> 
+                    <input type="number" min="1" max="100" class="quanity" name="quanity">
                 </label>
                 <label for="price" class="price-label"> Enter price
                     <input type="number" class="price" step="1.2" name="productprice">
@@ -50,8 +50,8 @@
                         try {
                             $db = new PDO("mysql:host=$serverHost; dbname=$dbName", $username, $password);
                             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $stmt =  "SELECT * FROM products";
-                            $result = $db->prepare($stmt);
+                            $statement =  "SELECT * FROM products";
+                            $result = $db->prepare($statement);
                             $result->execute();
 
 
@@ -59,10 +59,11 @@
                             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                                 echo "<tr>";
 
-                                echo "<td>$row[product_name] <td>";
-                                echo "<td>$row[quanity] </td>";
-                                echo "<td>$row[price]</td>";
-                               echo "<td><a class='edit btn btn-primary' href='../edit.html'>Edit </a></td>";
+
+                                echo " <td>  $row[product_name] </td>";
+                                echo " <td> $row[quanity] </td>";
+                                echo " <td>  $row[price] </td>";
+                                echo "<td><a class='edit btn btn-primary' href='../edit.php' name='edit' >Edit</a></td>";
 
                                 echo "<td>
                             <form class='delete_form col-lg-6 col-md-6 col-sm-12' action='delete_product.php' method='POST'>

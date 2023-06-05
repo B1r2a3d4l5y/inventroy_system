@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class=" container-fluid  ">
+    <div class=" container  ">
         <div class="row">
             <form class="form col-lg-6 col-md-6 col-sm-12 col-xs-12" action="includes/log_user.php" method="POST">
                 <div class="form_group col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -20,12 +20,12 @@
 
 
                     <label for="username">
-                        <input type="text" class="user" name="user" placeholder="Username">
+                        <input type="text" class="user" name="user" autocomplete="current_user" placeholder="Username">
                     </label>
 
                     <label for="password">
                         <input type="password" class="password" name="password" id="password" autocomplete="current-password" placeholder="Password ">
-                        <span class="eye-icon" id="toggle_password"><i class=" bi bi-eye " ></i></span>
+                        <span class="eye-icon" id="toggle_password"><i class=" bi bi-eye "></i></span>
                         <button type="submit" class="login btn btn-success btn-mt-4" name="login">Login</button>
                 </div>
         </div>

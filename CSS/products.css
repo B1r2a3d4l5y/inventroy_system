@@ -50,11 +50,11 @@
 .products-table {
     display: inline-block;
     position: relative;
+    bottom: -100px;
     text-align: center;
     align-items: center;
-    width: 1000%;
-    height: 300px;
-    text-indent: 5px;
+    width: 500%;
+
     
 
 }

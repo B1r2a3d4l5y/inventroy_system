@@ -9,11 +9,12 @@ try {
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if(isset($_POST["delete_user"])) {
+        
         $id = $_POST["delete_user"];
         $query = "DELETE  FROM users WHERE uid=? ";
         $delete = $connection->prepare($query);
         $delete->execute([$id]);
-        header("Location:users.php?user=user has being deleted");
+        header("Location:users.php?user=User has being deleted");
         exit;
     }
 

@@ -3,7 +3,7 @@
 $serverHost = "localhost";
 $dbname = "login";
 $dbusername = "root";
-$dbPassword = "" ;
+$dbPassword = "";
 $serverHost = "localhost";
 $dbname = "login";
 $dbusername = "root";
@@ -15,33 +15,27 @@ try {
   $db = new PDO("mysql:host=$serverHost; dbname=$dbname", $dbusername, $dbpassword);
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  if(isset($_POST["login"]) ) {
-    $user = trim($_POST["user"]) ;
+  if (isset($_POST["login"])) {
+    $user = trim($_POST["user"]);
     $password = trim($_POST["password"]);
     $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
-    if(empty($user)|| empty($password)) {
-    header("Location:../login.php?Fields=Please fill in the fields");
-    exit;
-  } else {
-    $statement = $db->prepare("SELECT * FROM `users` WHERE  username=:username AND  password=:password ");
-    $statement->execute(['username' => $user, 'password' => $password]);
-
-    while($statement->fetch(PDO::FETCH_ASSOC)) {
-      $_SESSION["logged"] = 1;
-      $_SESSION["user"] = $user;
-      header("Location:dashboard.php");
+    if (empty($user) || empty($password)) {
+      header("Location:../login.php?Fields=Please fill in the fields");
       exit;
+    } else {
+      $statement = $db->prepare("SELECT * FROM `users` WHERE  username=:username AND  password=:password ");
+      $statement->execute(['username' => $user, 'password' => $password]);
 
+      while ($statement->fetch(PDO::FETCH_ASSOC)) {
+        $_SESSION["logged"] = 1;
+        $_SESSION["user"] = $user;
+        header("Location:dashboard.php");
+        exit;
+      }
     }
   }
-  }
-  
-  
-    
- 
-
-} catch(PDOException $error) {
+} catch (PDOException $error) {
   $message = $error->getMessage();
-    echo $message;
+  echo $message;
 }

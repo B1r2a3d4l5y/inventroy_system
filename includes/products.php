@@ -63,7 +63,7 @@
                                 echo " <td>  $row[product_name] </td>";
                                 echo " <td> $row[quanity] </td>";
                                 echo " <td>  $row[price] </td>";
-                                echo "<td><a class='edit btn btn-primary' href='../edit.php' name='edit' >Edit</a></td>";
+                                echo "<td><a class='edit btn btn-primary' href='../edit.php?id=$row[id]'  >Edit</a></td>";
 
                                 echo "<td>
                             <form class='delete_form col-lg-6 col-md-6 col-sm-12' action='delete_product.php' method='POST'>

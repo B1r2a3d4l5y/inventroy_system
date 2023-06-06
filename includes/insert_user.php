@@ -10,17 +10,17 @@ try {
 
       if(isset($_POST["add_user"])) {
         $username = trim($_POST["username"]);
-        $password = trim($_POST["userpassword"]);
-        $hash_password = password_hash($password, PASSWORD_DEFAULT);
+        $user_password = trim($_POST["userpassword"]);
+        $hash_password = password_hash($user_password, PASSWORD_DEFAULT);
 
-        if(empty($username) || empty($password)) {
+        if(empty($username) || empty($user_password)) {
           header("Location:users.php?Fields=fieidls are empty please fill them in");
           exit;
         } else {
           $sql = "INSERT INTO users(username, password) VALUES(?,?)";
           $statement = $db->prepare($sql);
-          $statement->execute([$username, $password]);
-          header("Location:users.php?user=user successfully added");
+          $statement->execute([$username, $user_password]);
+          header("Location:users.php?user= user successfully added");
           exit; 
 
           

@@ -9,23 +9,22 @@
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="./CSS/edit.css">
 
-    <title>Edit product price</title>
+    <title>Edit product</title>
 </head>
 
 <body>
     <form class="editForm col-lg-6 col-md-6 col-sm-12 col-xs-12" action="./includes/edit_product.php" method="POST">
-        <label for="id">
-            <input  type="hidden" name="id" id="id">
+        <label>
+            <input type="hidden" name="id" id="id">
         </label>
-        
 
         <label for="quanity"> Enter new quanity amount
             <input type="text" name="quanity" id="quanity">
         </label>
         <label for="product_price"> Enter new price
-            <input type="number" step="1.2" max="100" name="product_price" id="product_price">
+            <input type="number" step="1.2" max="100" name="productprice" id="product_price">
         </label>
-        <button type="submit" class="update btn  btn-primary" name="update" id="editBtn"  >Update</button>
+        <button type="submit" class="update btn  btn-primary" name="update"   >Update</button>
     </form>
 
 </body>

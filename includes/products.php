@@ -36,6 +36,8 @@
                             <th>Product Name</th>
                             <th>Quanity</th>
                             <th>Price</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
 
 
                         </tr>
@@ -50,6 +52,8 @@
                         try {
                             $db = new PDO("mysql:host=$serverHost; dbname=$dbName", $username, $password);
                             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
                             $statement =  "SELECT * FROM products";
                             $result = $db->prepare($statement);
                             $result->execute();
@@ -60,9 +64,9 @@
                                 echo "<tr>";
 
 
-                                echo " <td>  $row[product_name] </td>";
-                                echo " <td> $row[quanity] </td>";
-                                echo " <td>  $row[price] </td>";
+                                echo " <td> $row[product_name]</td>";
+                                echo " <td>$row[quanity]</td>";
+                                echo " <td>$row[price]</td>";
                                 echo "<td><a class='edit btn btn-primary' href='../edit.php?id=$row[id]'  >Edit</a></td>";
 
                                 echo "<td>

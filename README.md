@@ -39,7 +39,12 @@ You can also downlod it from the code section in my profile.
 
 What  I learned 
 PHP PDO
+
+
 Sercity
+
 error controll
+
+
 Bug handeling 
 

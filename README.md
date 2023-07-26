@@ -1,5 +1,11 @@
 "# inventroy-system"
 This is inventroy system I built using HTML , CSS , Bootstrap , Javascript, PHP and SQL
+About this project 
+This is an inventroy admin dashbosd tha t allows the admin to to add, edit delete products
+shows highest selling products 
+login the admin 
+add and delete users 
+
 
 front-end
 

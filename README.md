@@ -24,7 +24,7 @@ databases
 SQL
 
 Please run this project in xampp or wampp
-Please select homepage.html when you run it and click the admin login  to log yourself in.
+Please select homepage.html when you run it and click the admin login link at the top of the page,   to log yourself in.
 To do this please fill admin in as your username and password in the password field.
 
 
@@ -37,4 +37,9 @@ You can fork it.
 
 You can also downlod it from the code section in my profile.
 
+What  I learned 
+PHP PDO
+Sercity
+error controll
+Bug handeling 
 

@@ -11,9 +11,9 @@ try {
 
   if (isset($_POST["update"])) {
 
-    $product_id = trim($_POST["id"]);
+    $product_id = trim($_GET["id"]);
     $quantity = trim($_POST["quantity"]);
-    $product_price = trim($_POST["product-price"]);
+    $product_price = trim($_POST["product_price"]);
 
     if (empty($quantity) || empty($product_price)) {
       header("Location:../edit.php?edit=Please fill in the fields");

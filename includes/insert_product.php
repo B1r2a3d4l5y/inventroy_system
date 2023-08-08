@@ -4,10 +4,16 @@ $dbName = "products";
 $username = "root";
 $password = "";
 try {
-    if(isset($_POST['add'])) {
-    $product_name = trim($_POST["product_name"]);
-    $quanity = trim( $_POST["quanity"]);
-    $product_price =trim( $_POST["productprice"]);
+    function test_input($data) {
+        $data = trim($data);
+        $data = htmlspecialchars($data);
+        $data = stripslashes($data);
+        return $data;
+    }
+    if($_SERVER["REQUEST_METHOD"] === "POST") {
+    $product_name = test_input($_POST["product_name"]);
+    $quanity = test_input( $_POST["quanity"]);
+    $product_price = test_input( $_POST["productprice"]);
 
     $db = new PDO("mysql:host=$serverHost; dbname=$dbName", $username, $password);
     

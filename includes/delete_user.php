@@ -8,7 +8,7 @@ try {
     $connection = new PDO("mysql:host=$serverHost; dbname=$dbName",  $dbusername, $dbpassword);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    if(isset($_POST["delete_user"])) {
+    if($_SERVER["REQUEST_METHOD"] === "POST") {
         
         $id = $_POST["delete_user"];
         $query = "DELETE  FROM users WHERE uid=? ";

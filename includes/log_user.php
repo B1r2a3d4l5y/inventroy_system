@@ -32,7 +32,7 @@ try {
       exit;
     } else {
       $statement = $db->prepare("SELECT * FROM `users` WHERE  username=:username AND  password=:password ");
-      $statement->execute(['username' => $user, 'password' => $password]);
+      $statement->execute([':username' => $user, ':password' => $password]);
 
       while ($statement->fetch(PDO::FETCH_ASSOC)) {
         $_SESSION["logged"] = 1;

@@ -16,7 +16,7 @@
         <div class="row">
             <form class="form col-lg-6 col-md-6 col-sm-12 col-xs-12" action="includes/log_user.php" method="POST">
                 <div class="form_group col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <h1>Login User</h1>
+                    <h1>Login Admin</h1>
 
 
                     <label for="username">
